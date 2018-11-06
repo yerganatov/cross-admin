@@ -4,6 +4,8 @@ import { BrowserRouter, Route, Redirect } from 'react-router-dom';
 import { auth, storageKey, isAuthenticated } from './firebase';
 import Login from './Login';
 import addProject from "./addProject";
+import addCatalog from "./addCatalog";
+
 
 class App extends Component {
     constructor(props) {
@@ -39,7 +41,9 @@ class App extends Component {
             <BrowserRouter>
                 <div>
                     <Route exact path="/" component={Login} />
-                    <Route path="/addproject" component={addProject} />
+                    <PrivateRoute path="/addproject" component={addProject} />
+                    <PrivateRoute path="/addcatalog" component={addCatalog} />
+
                 </div>
             </BrowserRouter>
         );
