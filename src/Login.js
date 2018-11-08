@@ -10,13 +10,14 @@ class Login extends Component{
     };
 
 
-    onSignIn = async (email, password) => {
+    onSignIn = async () => {
         try {
-            await auth.signInWithEmailAndPassword(email, password);
+            await auth.signInWithEmailAndPassword(this.state.login, this.state.password);
         } catch (error) {
             alert(error.message);
         }
     };
+
 
     render(){
         if (isAuthenticated()) {

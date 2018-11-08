@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import "./bootstrap.css";
 import './App.css';
+import Sidebar from "./sidebar";
 import { db, store } from "./firebase";
 
 class addCatalog extends Component {
@@ -41,16 +42,32 @@ class addCatalog extends Component {
         console.log(this.state,this.fileUpload.files);
         const files = this.fileUpload.files;
         const giud = this.guid();
+        const project = this.state.project;
         db.collection("catalog").add(this.state.project)
             .then(function (docRef) {
                 let storage = store;
                 let storageRef = storage.ref();
                 let newDirectory = docRef.id;
-                Object.values(files).map((item) => {
+                Object.values(files).map(async (item)  => {
                     let imagesRef = storageRef.child(`images/${newDirectory}/${item.name}`);
 
-                    imagesRef.put(item);
-                })
+                    await imagesRef.put(item).then((span) => {
+                        const downloadURL = store
+                            .ref(`images/${newDirectory}/`)
+                            .child(item.name)
+                            .getDownloadURL().then(url => {
+                                project["image"] = url;
+                                db.collection("catalog").doc(newDirectory).set(project).then(function (docRef) {
+                                    console.log(docRef);
+                                    console.log("Document successfully written!");
+                                });
+                            });
+
+
+
+                    });
+
+                });
                 console.log("Document successfully written!");
             })
             .catch(function (error) {
@@ -72,14 +89,7 @@ class addCatalog extends Component {
     render() {
         return (
             <div className="App d-flex">
-                <div className="sidebar d-flex flex-column py-4">
-                    <a className="d-flex justify-content-center align-self-center mb-4" href=""><img src={process.env.PUBLIC_URL + 'logo-mobile.png'} alt="" /></a>
-                    <a href="/addCatalog">Добавление каталога</a>
-                    <a href="">Список каталогов</a>
-                    <a href="/addProject">Добавление проекта</a>
-                    <a href="">Список проектов</a>
-                    <a href="">Выйти</a>
-                </div>
+                <Sidebar/>
                 <div className="main-content p-5 d-flex flex-column">
                     <h1>Добавление нового каталога</h1>
                     <p>Все поля обязательны к заполнению</p>
