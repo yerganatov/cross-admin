@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import "./bootstrap.css";
 import './App.css';
 import Sidebar from "./sidebar";
 
-import { db, store } from "./firebase";
+import {db, store} from "./firebase";
 
 class addProject extends Component {
     state = {
@@ -36,7 +36,8 @@ class addProject extends Component {
         filenames: [],
         downloadURLs: [],
         isUploading: false,
-        uploadProgress: 0
+        uploadProgress: 0,
+        images: []
     };
     guid = () => {
         function s4() {
@@ -44,25 +45,35 @@ class addProject extends Component {
                 .toString(16)
                 .substring(1);
         }
+
         return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
     }
 
 
     uploadProject = async () => {
-        console.log(this.state,this.fileUpload.files);
         const files = this.fileUpload.files;
-        const giud = this.guid();
+        const project = this.state.project;
+        const images = this.state.images;
         db.collection("projects").add(this.state.project)
             .then(function (docRef) {
-                let storage = store;
-                let storageRef = storage.ref();
-                let newDirectory = docRef.id;
-                Object.values(files).map((item) => {
+                const storage = store;
+                const storageRef = storage.ref();
+                const newDirectory = docRef.id;
+                Object.values(files).map(async (item) => {
                     let imagesRef = storageRef.child(`images/${newDirectory}/${item.name}`);
+                    await imagesRef.put(item).then((span) => {
+                        store
+                            .ref(`images/${newDirectory}/`)
+                            .child(item.name)
+                            .getDownloadURL().then(url => {
+                            images.push(url);
+                            project["images"] = images;
+                            db.collection("projects").doc(newDirectory).set(project);
+                        });
 
-                    imagesRef.put(item);
+                    });
                 })
-                console.log("Document successfully written!");
+
             })
             .catch(function (error) {
                 console.error("Error writing document: ", error);
@@ -91,33 +102,55 @@ class addProject extends Component {
                         <div className="col-md-8">
                             <form className="d-flex flex-column h-100" action="">
                                 <h3>Информация на русском языке</h3>
-                                <input onChange={(event) => this.changeValue("ru", "title", event)} placeholder="title" value={this.state.project.ru.title} type="text" required />
-                                <input onChange={(event) => this.changeValue("ru", "done", event)} placeholder="done" value={this.state.project.ru.done} type="text" required />
-                                <input onChange={(event) => this.changeValue("ru", "goal", event)} placeholder="goal" value={this.state.project.ru.goal} type="text" required />
-                                <input onChange={(event) => this.changeValue("ru", "aboutClient", event)} placeholder="aboutClient" value={this.state.project.ru.aboutClient} type="text" required />
-                                <input onChange={(event) => this.changeValue("ru", "result", event)} placeholder="result" value={this.state.project.ru.result} type="text" required />
+                                <input onChange={(event) => this.changeValue("ru", "title", event)} placeholder="title"
+                                       value={this.state.project.ru.title} type="text" required/>
+                                <input onChange={(event) => this.changeValue("ru", "done", event)} placeholder="done"
+                                       value={this.state.project.ru.done} type="text" required/>
+                                <input onChange={(event) => this.changeValue("ru", "goal", event)} placeholder="goal"
+                                       value={this.state.project.ru.goal} type="text" required/>
+                                <input onChange={(event) => this.changeValue("ru", "aboutClient", event)}
+                                       placeholder="aboutClient" value={this.state.project.ru.aboutClient} type="text"
+                                       required/>
+                                <input onChange={(event) => this.changeValue("ru", "result", event)}
+                                       placeholder="result" value={this.state.project.ru.result} type="text" required/>
                                 <h3>Информация на английском языке</h3>
-                                <input onChange={(event) => this.changeValue("en", "title", event)} placeholder="title" value={this.state.project.en.title} type="text" required />
-                                <input onChange={(event) => this.changeValue("en", "done", event)} placeholder="done" value={this.state.project.en.done} type="text" required />
-                                <input onChange={(event) => this.changeValue("en", "goal", event)} placeholder="goal" value={this.state.project.en.goal} type="text" required />
-                                <input onChange={(event) => this.changeValue("en", "aboutClient", event)} placeholder="aboutClient" value={this.state.project.en.aboutClient} type="text" required />
-                                <input onChange={(event) => this.changeValue("en", "result", event)} placeholder="result" value={this.state.project.en.result} type="text" required />
+                                <input onChange={(event) => this.changeValue("en", "title", event)} placeholder="title"
+                                       value={this.state.project.en.title} type="text" required/>
+                                <input onChange={(event) => this.changeValue("en", "done", event)} placeholder="done"
+                                       value={this.state.project.en.done} type="text" required/>
+                                <input onChange={(event) => this.changeValue("en", "goal", event)} placeholder="goal"
+                                       value={this.state.project.en.goal} type="text" required/>
+                                <input onChange={(event) => this.changeValue("en", "aboutClient", event)}
+                                       placeholder="aboutClient" value={this.state.project.en.aboutClient} type="text"
+                                       required/>
+                                <input onChange={(event) => this.changeValue("en", "result", event)}
+                                       placeholder="result" value={this.state.project.en.result} type="text" required/>
                                 <h3>Информация на немецком языке</h3>
-                                <input onChange={(event) => this.changeValue("gr", "title", event)} placeholder="title" value={this.state.project.gr.title} type="text" required />
-                                <input onChange={(event) => this.changeValue("gr", "done", event)} placeholder="done" value={this.state.project.gr.done} type="text" required />
-                                <input onChange={(event) => this.changeValue("gr", "goal", event)} placeholder="goal" value={this.state.project.gr.goal} type="text" required />
-                                <input onChange={(event) => this.changeValue("gr", "aboutClient", event)} placeholder="aboutClient" value={this.state.project.gr.aboutClient} type="text" required />
-                                <input onChange={(event) => this.changeValue("gr", "result", event)} placeholder="result" value={this.state.project.gr.result} type="text" required />
-                                <button onClick={() => this.uploadProject()} type="button" class="btn btn-primary">Добавить</button>
+                                <input onChange={(event) => this.changeValue("gr", "title", event)} placeholder="title"
+                                       value={this.state.project.gr.title} type="text" required/>
+                                <input onChange={(event) => this.changeValue("gr", "done", event)} placeholder="done"
+                                       value={this.state.project.gr.done} type="text" required/>
+                                <input onChange={(event) => this.changeValue("gr", "goal", event)} placeholder="goal"
+                                       value={this.state.project.gr.goal} type="text" required/>
+                                <input onChange={(event) => this.changeValue("gr", "aboutClient", event)}
+                                       placeholder="aboutClient" value={this.state.project.gr.aboutClient} type="text"
+                                       required/>
+                                <input onChange={(event) => this.changeValue("gr", "result", event)}
+                                       placeholder="result" value={this.state.project.gr.result} type="text" required/>
+                                <button onClick={() => this.uploadProject()} type="button" class="btn btn-primary">
+                                    Добавить
+                                </button>
                             </form>
 
                         </div>
                         <div className="col-md-4">
                             <label htmlFor="">
-                                <input ref={instance => {this.fileUpload = instance}} type="file" multiple={true} accept={"image/*"}/>
+                                <input ref={instance => {
+                                    this.fileUpload = instance
+                                }} type="file" multiple={true} accept={"image/*"}/>
                                 <div>
                                     {this.state.downloadURLs.map((downloadURL, i) => {
-                                        return <img key={i} src={downloadURL} />;
+                                        return <img key={i} src={downloadURL}/>;
                                     })}
                                 </div>
 
