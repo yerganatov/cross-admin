@@ -5,7 +5,7 @@ import { auth, storageKey, isAuthenticated } from './firebase';
 import Login from './Login';
 import addProject from "./addProject";
 import addCatalog from "./addCatalog";
-
+import addTeam from "./addTeam";
 
 class App extends Component {
     constructor(props) {
@@ -43,6 +43,7 @@ class App extends Component {
                     <Route exact path="/" component={Login} />
                     <PrivateRoute path="/addproject" component={addProject} />
                     <PrivateRoute path="/addcatalog" component={addCatalog} />
+                    <PrivateRoute path="/addTeam" component={addTeam} />
 
                 </div>
             </BrowserRouter>
