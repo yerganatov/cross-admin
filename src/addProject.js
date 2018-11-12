@@ -95,7 +95,7 @@ class addProject extends Component {
         return (
             <div className="App d-flex">
                 <Sidebar/>
-                <div className="main-content p-5 d-flex flex-column">
+                {/*<div className="main-content px-4 py-5 d-flex flex-column">
                     <h1>Добавление нового проекта</h1>
                     <p>Все поля обязательны к заполнению</p>
                     <div className="row">
@@ -159,6 +159,122 @@ class addProject extends Component {
 
                     </div>
 
+                </div>*/}
+
+
+                <div className="main-content px-4 py-5 d-flex flex-column">
+                    <form action="" className="d-flex flex-column align-items-center">
+                        <h1>ДОБАВЛЕНИЕ ПРОЕКТА</h1>
+                        <hr className="sep"/>
+                        <div className="row mx-0 p-0 w-100">
+                            <div className="col-6 mb-4">
+                                <h5>Информация на русском языке</h5>
+                                <div className="group">
+                                    <input onChange={(event) => this.changeValue("ru", "title", event)} value={this.state.project.ru.title} type="text" required="required"/><span className="highlight"></span><span
+                                    className="bar"></span>
+                                    <label>Название проекта</label>
+                                </div>
+                                <div className="group">
+                                    <textarea onChange={(event) => this.changeValue("ru", "aboutClient", event)} value={this.state.project.ru.aboutClient} type="textarea" rows="5" required="required"></textarea><span className="highlight"></span><span
+                                    className="bar"></span>
+                                    <label>О клиенте</label>
+                                </div>
+                                <div className="group">
+                                    <textarea onChange={(event) => this.changeValue("ru", "goal", event)} value={this.state.project.ru.goal} type="textarea" rows="3" required="required"></textarea><span className="highlight"></span><span
+                                    className="bar"></span>
+                                    <label>Задача</label>
+                                </div>
+                                <div className="group">
+                                    <textarea onChange={(event) => this.changeValue("ru", "done", event)} value={this.state.project.ru.done} type="textarea" rows="3" required="required"></textarea><span className="highlight"></span><span
+                                    className="bar"></span>
+                                    <label>Проделанная работа</label>
+                                </div>
+                                <div className="group">
+                                    <textarea onChange={(event) => this.changeValue("ru", "result", event)} value={this.state.project.ru.result} type="textarea" rows="3" required="required"></textarea><span
+                                    className="highlight"></span><span className="bar"></span>
+                                    <label>Результаты</label>
+                                </div>
+                            </div>
+
+
+                            <div className="col-6 mb-4">
+                                <h5>Информация на английском языке</h5>
+                                <div className="group">
+                                    <input onChange={(event) => this.changeValue("en", "title", event)} value={this.state.project.en.title} type="text" required="required"/><span className="highlight"></span><span
+                                    className="bar"></span>
+                                    <label>Название проекта</label>
+                                </div>
+                                <div className="group">
+                                    <textarea onChange={(event) => this.changeValue("en", "aboutClient", event)} value={this.state.project.en.aboutClient} type="textarea" rows="5" required="required"></textarea><span className="highlight"></span><span
+                                    className="bar"></span>
+                                    <label>О клиенте</label>
+                                </div>
+                                <div className="group">
+                                    <textarea onChange={(event) => this.changeValue("en", "goal", event)} value={this.state.project.en.goal} type="textarea" rows="3" required="required"></textarea><span className="highlight"></span><span
+                                    className="bar"></span>
+                                    <label>Задача</label>
+                                </div>
+                                <div className="group">
+                                    <textarea onChange={(event) => this.changeValue("en", "done", event)} value={this.state.project.en.done} type="textarea" rows="3" required="required"></textarea><span className="highlight"></span><span
+                                    className="bar"></span>
+                                    <label>Проделанная работа</label>
+                                </div>
+                                <div className="group">
+                                    <textarea onChange={(event) => this.changeValue("en", "result", event)} value={this.state.project.en.result} type="textarea" rows="3" required="required"></textarea><span
+                                    className="highlight"></span><span className="bar"></span>
+                                    <label>Результаты</label>
+                                </div>
+                            </div>
+
+                            <div className="col-6 mb-4">
+                                <h5>Информация на немецком языке</h5>
+                                <div className="group">
+                                    <input onChange={(event) => this.changeValue("gr", "title", event)} value={this.state.project.gr.title} type="text" required="required"/><span className="highlight"></span><span
+                                    className="bar"></span>
+                                    <label>Название проекта</label>
+                                </div>
+                                <div className="group">
+                                    <textarea onChange={(event) => this.changeValue("gr", "aboutClient", event)} value={this.state.project.gr.aboutClient} type="textarea" rows="5" required="required"></textarea><span className="highlight"></span><span
+                                    className="bar"></span>
+                                    <label>О клиенте</label>
+                                </div>
+                                <div className="group">
+                                    <textarea onChange={(event) => this.changeValue("gr", "goal", event)} value={this.state.project.gr.goal} type="textarea" rows="3" required="required"></textarea><span className="highlight"></span><span
+                                    className="bar"></span>
+                                    <label>Задача</label>
+                                </div>
+                                <div className="group">
+                                    <textarea onChange={(event) => this.changeValue("gr", "done", event)} value={this.state.project.gr.done} type="textarea" rows="3" required="required"></textarea><span className="highlight"></span><span
+                                    className="bar"></span>
+                                    <label>Проделанная работа</label>
+                                </div>
+                                <div className="group">
+                                    <textarea onChange={(event) => this.changeValue("gr", "result", event)} value={this.state.project.gr.result} type="textarea" rows="3" required="required"></textarea><span
+                                    className="highlight"></span><span className="bar"></span>
+                                    <label>Результаты</label>
+                                </div>
+                            </div>
+
+                            <div className="col-6 mb-4">
+                                <h5>Изображения для загрузки <br/> (Можно загрузить несколько изображений)</h5>
+                                <div>
+                                    <input ref={instance => {
+                                        this.fileUpload = instance
+                                    }} type="file" multiple={true} accept={"image/*"} required/>
+                                    <div>
+                                        {this.state.downloadURLs.map((downloadURL, i) => {
+                                            return <img key={i} src={downloadURL}/>;
+                                        })}
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="btn-box">
+                            <button onClick={() => this.uploadProject()} className="btn btn-submit" type="submit">Добавить</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         );
