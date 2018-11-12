@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import "./bootstrap.css";
 import './App.css';
 import Sidebar from "./sidebar";
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css'
 
 import { db, store } from "./firebase";
 
@@ -51,7 +53,7 @@ class changeProject extends Component {
             console.log(project);
             this.setState({
                 project: project,
-                images:project.images
+                images: project.images
             })
         }
         catch (error) {
@@ -64,27 +66,48 @@ class changeProject extends Component {
         const images = this.state.images;
         project.images = this.state.images;
         const id = this.props.match.params.id;
-        db.collection("projects").doc(this.props.match.params.id).set(project).then(function(docRef){
+        db.collection("projects").doc(this.props.match.params.id).set(project).then(async (docRef) => {
             const storage = store;
             const storageRef = storage.ref();
             const newDirectory = id;
-            Object.values(files).map(async (item) => {
+            await Object.values(files).map(async (item) => {
                 let imagesRef = storageRef.child(`images/${newDirectory}/${item.name}`);
                 await imagesRef.put(item).then((span) => {
                     store
                         .ref(`images/${newDirectory}/`)
                         .child(item.name)
                         .getDownloadURL().then(url => {
-                        images.push(url);
-                        project["images"] = images;
-                        db.collection("projects").doc(newDirectory).set(project);
-                    });
+                            images.push(url);
+                            project["images"] = images;
+                            db.collection("projects").doc(newDirectory).set(project);
+                        });
 
                 });
             })
+            const options = {
+                title: 'Готово!',
+                message: 'Хотите вернутся на глаавную?',
+                buttons: [
+                    {
+                        label: 'Да',
+                        onClick: () => { this.props.history.push('/listprojects')}
+                    },
+                    {
+                        label: 'Нет',
+                        onClick: () => this.fetchProject()
+                    }
+                ],
+                childrenElement: () => <div />,
+                willUnmount: () => { }
+            }
+
+            confirmAlert(options)
+
         })
-       
+
     }
+
+
 
     changeValue = async (language, key, event) => {
         const value = event.target.value;
@@ -96,12 +119,12 @@ class changeProject extends Component {
         console.log(this.state);
     }
 
-    removeImage = (index) =>{
+    removeImage = (index) => {
         console.log(index);
         let imageList = this.state.images;
-        imageList.splice(index,1);
+        imageList.splice(index, 1);
         this.setState({
-            images:imageList
+            images: imageList
         })
         console.log(this.state.images);
     }

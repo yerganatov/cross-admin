@@ -5,6 +5,7 @@
   "dependencies": {
     "firebase": "^5.5.7",
     "react": "^16.6.0",
+    "react-confirm-alert": "^2.0.6",
     "react-dom": "^16.6.0",
     "react-firebase-file-uploader": "^2.4.2",
     "react-input-mask": "^2.0.4",

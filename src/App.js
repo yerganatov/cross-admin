@@ -7,9 +7,11 @@ import addProject from "./addProject";
 import addCatalog from "./addCatalog";
 import addTeam from "./addTeam";
 import listProjects from "./listProjects";
+import listCatalog from "./listCatalog";
 import addService from "./addService";
 import addPartners from "./addPartners";
 import changeProject from "./changeProjects";
+import changeCatalog from './changeCatalog';
 class App extends Component {
     constructor(props) {
         super(props);
@@ -48,9 +50,12 @@ class App extends Component {
                     <PrivateRoute path="/addcatalog" component={addCatalog} />
                     <PrivateRoute path="/addTeam" component={addTeam} />
                     <PrivateRoute path="/listProjects" component={listProjects} />
+                    <PrivateRoute path="/listCatalog" component={listCatalog} />
+                    
                     <PrivateRoute path="/addService" component={addService} />
                     <PrivateRoute path="/addPartners" component={addPartners} />
                     <PrivateRoute path="/changeproject/:id" component={changeProject} />
+                    <PrivateRoute path="/changecatalog/:id" component={changeCatalog} />
 
 
                 </div>
