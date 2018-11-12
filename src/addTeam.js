@@ -54,7 +54,7 @@ class addTeam extends Component {
                             .child(item.name)
                             .getDownloadURL().then(url => {
                             person["image"] = url;
-                            db.collection("catalog").doc(newDirectory).set(person);
+                            db.collection("team").doc(newDirectory).set(person);
                         });
 
 
@@ -142,7 +142,7 @@ class addTeam extends Component {
                 </div>*/}
 
                 <div className="main-content px-4 py-5 d-flex flex-column">
-                    <form action="" className="d-flex flex-column align-items-center">
+                    <div className="form-div d-flex flex-column align-items-center">
                         <h1>ДОБАВЛЕНИЕ ПЕРСОНАЛА</h1>
                         <hr className="sep"/>
                         <div className="row mx-0 p-0 w-100">
@@ -227,7 +227,7 @@ class addTeam extends Component {
                             </div>
 
                             <div className="col-6 mb-4">
-                                <h5>Изображения для загрузки <br/> (Можно загрузить несколько изображений)</h5>
+                                <h5>Изображения для загрузки </h5>
                                 <div>
                                     <input  ref={instance => {
                                         this.fileUpload = instance
@@ -244,7 +244,7 @@ class addTeam extends Component {
                         <div className="btn-box">
                             <button onClick={() => this.uploadCatalog()} className="btn btn-submit" type="submit">Добавить</button>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         );

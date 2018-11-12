@@ -95,75 +95,8 @@ class addProject extends Component {
         return (
             <div className="App d-flex">
                 <Sidebar/>
-                {/*<div className="main-content px-4 py-5 d-flex flex-column">
-                    <h1>Добавление нового проекта</h1>
-                    <p>Все поля обязательны к заполнению</p>
-                    <div className="row">
-                        <div className="col-md-8">
-                            <form className="d-flex flex-column h-100" action="">
-                                <h3>Информация на русском языке</h3>
-                                <input onChange={(event) => this.changeValue("ru", "title", event)} placeholder="title"
-                                       value={this.state.project.ru.title} type="text" required/>
-                                <input onChange={(event) => this.changeValue("ru", "done", event)} placeholder="done"
-                                       value={this.state.project.ru.done} type="text" required/>
-                                <input onChange={(event) => this.changeValue("ru", "goal", event)} placeholder="goal"
-                                       value={this.state.project.ru.goal} type="text" required/>
-                                <input onChange={(event) => this.changeValue("ru", "aboutClient", event)}
-                                       placeholder="aboutClient" value={this.state.project.ru.aboutClient} type="text"
-                                       required/>
-                                <input onChange={(event) => this.changeValue("ru", "result", event)}
-                                       placeholder="result" value={this.state.project.ru.result} type="text" required/>
-                                <h3>Информация на английском языке</h3>
-                                <input onChange={(event) => this.changeValue("en", "title", event)} placeholder="title"
-                                       value={this.state.project.en.title} type="text" required/>
-                                <input onChange={(event) => this.changeValue("en", "done", event)} placeholder="done"
-                                       value={this.state.project.en.done} type="text" required/>
-                                <input onChange={(event) => this.changeValue("en", "goal", event)} placeholder="goal"
-                                       value={this.state.project.en.goal} type="text" required/>
-                                <input onChange={(event) => this.changeValue("en", "aboutClient", event)}
-                                       placeholder="aboutClient" value={this.state.project.en.aboutClient} type="text"
-                                       required/>
-                                <input onChange={(event) => this.changeValue("en", "result", event)}
-                                       placeholder="result" value={this.state.project.en.result} type="text" required/>
-                                <h3>Информация на немецком языке</h3>
-                                <input onChange={(event) => this.changeValue("gr", "title", event)} placeholder="title"
-                                       value={this.state.project.gr.title} type="text" required/>
-                                <input onChange={(event) => this.changeValue("gr", "done", event)} placeholder="done"
-                                       value={this.state.project.gr.done} type="text" required/>
-                                <input onChange={(event) => this.changeValue("gr", "goal", event)} placeholder="goal"
-                                       value={this.state.project.gr.goal} type="text" required/>
-                                <input onChange={(event) => this.changeValue("gr", "aboutClient", event)}
-                                       placeholder="aboutClient" value={this.state.project.gr.aboutClient} type="text"
-                                       required/>
-                                <input onChange={(event) => this.changeValue("gr", "result", event)}
-                                       placeholder="result" value={this.state.project.gr.result} type="text" required/>
-                                <button onClick={() => this.uploadProject()} type="button" class="btn btn-primary">
-                                    Добавить
-                                </button>
-                            </form>
-
-                        </div>
-                        <div className="col-md-4">
-                            <label htmlFor="">
-                                <input ref={instance => {
-                                    this.fileUpload = instance
-                                }} type="file" multiple={true} accept={"image/*"}/>
-                                <div>
-                                    {this.state.downloadURLs.map((downloadURL, i) => {
-                                        return <img key={i} src={downloadURL}/>;
-                                    })}
-                                </div>
-
-                            </label>
-                        </div>
-
-                    </div>
-
-                </div>*/}
-
-
                 <div className="main-content px-4 py-5 d-flex flex-column">
-                    <form action="" className="d-flex flex-column align-items-center">
+                    <div className="form-div d-flex flex-column align-items-center">
                         <h1>ДОБАВЛЕНИЕ ПРОЕКТА</h1>
                         <hr className="sep"/>
                         <div className="row mx-0 p-0 w-100">
@@ -274,7 +207,7 @@ class addProject extends Component {
                         <div className="btn-box">
                             <button onClick={() => this.uploadProject()} className="btn btn-submit" type="submit">Добавить</button>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         );

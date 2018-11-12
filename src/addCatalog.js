@@ -86,70 +86,8 @@ class addCatalog extends Component {
         return (
             <div className="App d-flex">
                 <Sidebar/>
-                {/*<div className="main-content p-5 d-flex flex-column">
-                    <h1>Добавление нового каталога</h1>
-                    <p>Все поля обязательны к заполнению</p>
-                    <div className="row">
-                        <div className="col-md-8">
-                            <form className="d-flex flex-column h-100" action="">
-                                <input type="date" onChange={(event) => {
-                                    this.setState({startDate: event.target.value})
-                                    console.log(this.state.startDate)
-                                }} />
-                                <h3>Информация на русском языке</h3>
-                                <input onChange={(event) => this.changeValue("ru", "title", event)} placeholder="title"
-                                       value={this.state.project.ru.title} type="text" required/>
-                                <input onChange={(event) => this.changeValue("ru", "aboutCatalog", event)}
-                                       placeholder="aboutCatalog" value={this.state.project.ru.aboutCatalog} type="text"
-                                       required/>
-                                <input onChange={(event) => this.changeValue("ru", "requestPartners", event)}
-                                       placeholder="requestPartners" value={this.state.project.ru.requestPartners}
-                                       type="text" required/>
-
-                                <h3>Информация на английском языке</h3>
-                                <input onChange={(event) => this.changeValue("en", "title", event)} placeholder="title"
-                                       value={this.state.project.en.title} type="text" required/>
-                                <input onChange={(event) => this.changeValue("en", "aboutCatalog", event)}
-                                       placeholder="aboutCatalog" value={this.state.project.en.aboutCatalog} type="text"
-                                       required/>
-                                <input onChange={(event) => this.changeValue("en", "requestPartners", event)}
-                                       placeholder="requestPartners" value={this.state.project.en.requestPartners}
-                                       type="text" required/>
-                                <h3>Информация на немецком языке</h3>
-                                <input onChange={(event) => this.changeValue("gr", "title", event)} placeholder="title"
-                                       value={this.state.project.gr.title} type="text" required/>
-                                <input onChange={(event) => this.changeValue("gr", "aboutCatalog", event)}
-                                       placeholder="aboutCatalog" value={this.state.project.gr.aboutCatalog} type="text"
-                                       required/>
-                                <input onChange={(event) => this.changeValue("gr", "requestPartners", event)}
-                                       placeholder="requestPartners" value={this.state.project.gr.requestPartners}
-                                       type="text" required/>
-                                <button onClick={() => this.uploadCatalog()} type="button" className="btn btn-primary">
-                                    Добавить
-                                </button>
-                            </form>
-
-                        </div>
-                        <div className="col-md-4">
-                            <label htmlFor="">
-                                <input ref={instance => {
-                                    this.fileUpload = instance
-                                }} type="file" multiple={false} accept={"image/*"}/>
-                                <div>
-                                    {this.state.downloadURLs.map((downloadURL, i) => {
-                                        return <img key={i} src={downloadURL}/>;
-                                    })}
-                                </div>
-
-                            </label>
-                        </div>
-
-                    </div>
-
-                </div>*/}
-
                 <div className="main-content px-4 py-5 d-flex flex-column">
-                    <form action="" className="d-flex flex-column align-items-center">
+                    <div className="form-div d-flex flex-column align-items-center">
                         <h1>ДОБАВЛЕНИЕ КАТАЛОГА</h1>
                         <hr className="sep"/>
                         <div className="row mx-0 p-0 w-100">
@@ -238,7 +176,7 @@ class addCatalog extends Component {
                         <div className="btn-box">
                             <button onClick={() => this.uploadCatalog()} className="btn btn-submit" type="submit">Добавить</button>
                         </div>
-                    </form>
+                    </div>
                 </div>
 
             </div>
