@@ -22,6 +22,7 @@ class Sidebar extends  Component {
                 <a href="/addCatalog">Каталоги</a>
                 <a href="/addProject">Проекты</a>
                 <a href="/addTeam">Команда</a>
+                <a href="/addService">Услуги</a>
                 <a href="">Партнеры</a>
                 <a onClick={this.signOut} href="">Выйти</a>
             </div>
