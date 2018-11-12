@@ -82,7 +82,7 @@ class changeCatalog extends Component {
             })
             const options = {
                 title: 'Готово!',
-                message: 'Хотите вернутся на глаавную?',
+                message: 'Хотите вернутся на главную?',
                 buttons: [
                     {
                         label: 'Да',
@@ -206,12 +206,12 @@ class changeCatalog extends Component {
                                 <input type="date" onChange={(event) => {
                                     this.setState({startDate: event.target.value})
                                     console.log(this.state.startDate)
-                                }} />
+                                }} value={this.state.startDate} />
                             </div>
                         </div>
 
                         <div className="btn-box">
-                            <button onClick={() => this.uploadCatalog()} className="btn btn-submit" type="submit">Добавить</button>
+                            <button onClick={() => this.uploadCatalog()} className="btn btn-submit" type="submit">Изменить</button>
                         </div>
                     </div>
                 </div>

@@ -227,3 +227,8 @@ label {
   object-position: center;
 }
 
+.react-confirm-alert-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

@@ -51,9 +51,9 @@ class listCatalog extends Component {
                                 this.state.projects.map((item) =>{
                                     return(
                                         <li className="list-group-item text-light d-flex justify-content-between align-items-center">
-                                            <a  href={"/changecatalog/"+ item.id}>{item.ru.title}</a>
+                                            <p className={"text-dark mb-0"}>{item.ru.title}</p>
                                             <div>
-                                                <a className={"btn btn-outline-primary mr-4"} href="">Изменить</a>
+                                                <a href={"/changecatalog/"+ item.id} className={"btn btn-outline-primary mr-4"}>Изменить</a>
                                                 <a className={"btn btn-danger"} href="">Удалить</a>
                                             </div>
                                         </li>

@@ -86,7 +86,7 @@ class changeProject extends Component {
             })
             const options = {
                 title: 'Готово!',
-                message: 'Хотите вернутся на глаавную?',
+                message: 'Хотите вернутся на главную?',
                 buttons: [
                     {
                         label: 'Да',
@@ -253,7 +253,7 @@ class changeProject extends Component {
                         </div>
 
                         <div className="btn-box">
-                            <button onClick={() => this.uploadProject()} className="btn btn-submit" type="submit">Добавить</button>
+                            <button onClick={() => this.uploadProject()} className="btn btn-submit" type="submit">Изменить</button>
                         </div>
                     </div>
                 </div>
