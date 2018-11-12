@@ -206,4 +206,23 @@ label {
   text-align: center;
   margin: 50px 0;
 }
+.disp-wrap{
+  height: 10rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  position: relative;
+}
+.disp-wrap button{
+  background: rgba(255,255,255,0.5);
+  position: absolute;
+  top: 5%;
+  right: 10%;
+  border: 0;
+  cursor: pointer;
+}
+.disp-img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 

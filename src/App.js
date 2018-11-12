@@ -9,7 +9,7 @@ import addTeam from "./addTeam";
 import listProjects from "./listProjects";
 import addService from "./addService";
 import addPartners from "./addPartners";
-
+import changeProject from "./changeProjects";
 class App extends Component {
     constructor(props) {
         super(props);
@@ -50,6 +50,7 @@ class App extends Component {
                     <PrivateRoute path="/listProjects" component={listProjects} />
                     <PrivateRoute path="/addService" component={addService} />
                     <PrivateRoute path="/addPartners" component={addPartners} />
+                    <PrivateRoute path="/changeproject/:id" component={changeProject} />
 
 
                 </div>

@@ -40,7 +40,7 @@ class listProjects extends Component {
                     {
                         this.state.projects.map((item) =>{
                             return(
-                                <a href="">{item.ru.title}</a>
+                                <a href={"/changeproject/"+ item.id}>{item.ru.title}</a>
                             )
                         })
                     }
