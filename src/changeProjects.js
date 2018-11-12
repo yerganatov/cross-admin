@@ -136,7 +136,7 @@ class changeProject extends Component {
                 <Sidebar />
                 <div className="main-content px-4 py-5 d-flex flex-column">
                     <div className="form-div d-flex flex-column align-items-center">
-                        <h1>Изменение ПРОЕКТА</h1>
+                        <h1>ИЗМЕНЕНИЕ ПРОЕКТА</h1>
                         <hr className="sep" />
                         <div className="row mx-0 p-0 w-100">
                             <div className="col-6 mb-4">
@@ -239,7 +239,7 @@ class changeProject extends Component {
                                                 return (
                                                     <div key={i} className="col-6 disp-wrap">
                                                         <button onClick={() => this.removeImage(i)}>
-                                                            x
+                                                            ✕
                                                         </button>
                                                         <img className="disp-img" key={i} src={item} />
                                                     </div>

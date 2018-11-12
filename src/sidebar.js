@@ -19,8 +19,8 @@ class Sidebar extends  Component {
         return(
             <div className="sidebar d-flex flex-column py-4">
                 <a className="d-flex justify-content-center align-self-center mb-4" href=""><img src={process.env.PUBLIC_URL + 'logo-mobile.png'} alt="" /></a>
-                <a href="/addCatalog">Каталоги</a>
-                <a href="/addProject">Проекты</a>
+                <a href="/listCatalog">Каталоги</a>
+                <a href="/listProjects">Проекты</a>
                 <a href="/addTeam">Команда</a>
                 <a href="/addService">Услуги</a>
                 <a href="/addPartners">Партнеры</a>

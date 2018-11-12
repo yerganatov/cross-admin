@@ -37,13 +37,31 @@ class listCatalog extends Component {
             <div className="App d-flex">
                 <Sidebar/>
                 <div className={"main-content p-5 d-flex flex-column"}>
-                    {
-                        this.state.projects.map((item) =>{
-                            return(
-                                <a href={"/changecatalog/"+ item.id}>{item.ru.title}</a>
-                            )
-                        })
-                    }
+                    <div className="form-div d-flex flex-column w-100">
+                        <h1>КАТАЛОГИ</h1>
+                        <hr className="sep"/>
+                        <div className="d-flex justify-content-around align-items-center mb-4">
+                            <h5 className={"mb-0"}>Добавить новый каталог</h5>
+                            <a className="btn btn-light" href="/addCatalog">Добавить</a>
+                        </div>
+                        <h1 className="mt-5">СПИСОК КАТАЛОГОВ</h1>
+                        <hr className="sep"/>
+                        <ul className="list-group">
+                            {
+                                this.state.projects.map((item) =>{
+                                    return(
+                                        <li className="list-group-item text-light d-flex justify-content-between align-items-center">
+                                            <a  href={"/changecatalog/"+ item.id}>{item.ru.title}</a>
+                                            <div>
+                                                <a className={"btn btn-outline-primary mr-4"} href="">Изменить</a>
+                                                <a className={"btn btn-danger"} href="">Удалить</a>
+                                            </div>
+                                        </li>
+                                    )
+                                })
+                            }
+                        </ul>
+                    </div>
                 </div>
             </div>
 

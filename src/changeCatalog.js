@@ -125,7 +125,7 @@ class changeCatalog extends Component {
                 <Sidebar/>
                 <div className="main-content px-4 py-5 d-flex flex-column">
                     <div className="form-div d-flex flex-column align-items-center">
-                        <h1>Изменение КАТАЛОГА</h1>
+                        <h1>ИЗМЕНЕНИЕ КАТАЛОГА</h1>
                         <hr className="sep"/>
                         <div className="row mx-0 p-0 w-100">
                             <div className="col-6 mb-4">
@@ -198,9 +198,7 @@ class changeCatalog extends Component {
                                     }} type="file" multiple={false} accept={"image/*"} required/>
                                     <div className="disp-wrap">
                                         
-                                        <button onClick={() => this.removeImage()}>
-                                                            x
-                                                        </button>
+                                        <button onClick={() => this.removeImage()}>✕</button>
                                         <img className="disp-img"  src={this.state.image}/>
                                     </div>
                                 </div>
