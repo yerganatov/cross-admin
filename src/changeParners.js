@@ -55,7 +55,7 @@ class addPartners extends Component {
         const files = this.fileUpload.files;
         const project = this.state.project;
         const images = this.state.images;
-        project.image = this.state.images[];
+        project.image = this.state.images[0];
         const id = this.props.match.params.id;
         db.collection("partners").doc(this.props.match.params.id).set(project).then(async (docRef) => {
             const storage = store;
