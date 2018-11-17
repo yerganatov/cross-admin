@@ -19,27 +19,28 @@ class addPartners extends Component {
             },
             gr: {
                 title: "",
-
-            }
+            },
+            image:""
         },
         filename: {},
         downloadURLs: [],
         isUploading: false,
-        uploadProgress: 0
+        uploadProgress: 0,
+        images:[]
     };
     componentDidMount() {
-        this.fetchProject();
+        this.fetchPartner();
     }
 
-    fetchProject = async () => {
+    fetchPartner = async () => {
         try {
             const snapshot = await db.collection('partners').doc(this.props.match.params.id).get();
             let project = snapshot.data();
             let images = this.state.images;
-            images.push(project.image);
+            console.log(project)
+            images.push(project.image)
             this.setState({
-                person: project,
-                images: images
+                project: project,
             })
         }
         catch (error) {
@@ -54,7 +55,7 @@ class addPartners extends Component {
         const files = this.fileUpload.files;
         const project = this.state.project;
         const images = this.state.images;
-        project.images = this.state.images;
+        project.image = this.state.images[];
         const id = this.props.match.params.id;
         db.collection("partners").doc(this.props.match.params.id).set(project).then(async (docRef) => {
             const storage = store;
@@ -98,13 +99,21 @@ class addPartners extends Component {
 
     changeValue = async (language, key, event) => {
         const value = event.target.value;
-        console.log(value)
         await this.setState(state => {
             state["project"][language][key] = value;
             return state;
         })
-        console.log(this.state);
     };
+
+    removeImage = (index) => {
+        console.log(index);
+        let imageList = this.state.images;
+        imageList.splice(index, 1);
+        this.setState({
+            images: imageList
+        })
+        console.log(this.state.images);
+    }
 
 
     render() {
@@ -151,19 +160,28 @@ class addPartners extends Component {
 
                             </div>
 
-                            <div className="col-6 mb-4">
-                                <h5>Изображения для загрузки </h5>
+                         <div className="col-6 mb-4">
+                                <h5>Изображения для загрузки <br /> (Можно загрузить несколько изображений)</h5>
                                 <div>
                                     <input ref={instance => {
                                         this.fileUpload = instance
-                                    }} type="file" multiple={false} accept={"image/*"} required/>
-                                    <div>
-                                        {this.state.downloadURLs.map((downloadURL, i) => {
-                                            return <img key={i} src={downloadURL}/>;
-                                        })}
+                                    }} type="file" multiple={true} accept={"image/*"} required />
+                                    <div className="container">
+                                        <div className="row">
+                                            {this.state.images.map((item, i) => {
+                                                return (
+                                                    <div key={i} className="col-6 disp-wrap">
+                                                        <button onClick={() => this.removeImage(i)}>
+                                                            ✕
+                                                        </button>
+                                                        <img className="disp-img" key={i} src={item} />
+                                                    </div>
+                                                );
+                                            })}
+                                        </div>
                                     </div>
-                                </div>
 
+                                </div>
                             </div>
                         </div>
 

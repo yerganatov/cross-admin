@@ -53,7 +53,7 @@ class listCatalog extends Component {
                                         <li className="list-group-item text-light d-flex justify-content-between align-items-center">
                                             <p className={"text-dark mb-0"}>{item.ru.title}</p>
                                             <div>
-                                                <a href={"/changeParters/"+ item.id} className={"btn btn-outline-primary mr-4"}>Изменить</a>
+                                                <a href={"/changeParteners/"+ item.id} className={"btn btn-outline-primary mr-4"}>Изменить</a>
                                                 <a className={"btn btn-danger"} href="">Удалить</a>
                                             </div>
                                         </li>
