@@ -12,6 +12,12 @@ import addService from "./addService";
 import addPartners from "./addPartners";
 import changeProject from "./changeProjects";
 import changeCatalog from './changeCatalog';
+import listTeam from "./listTeam";
+import listService from "./listService";
+import changeService from "./changeService";
+import listPartners from "./listPartners";
+
+import changeTeam from "./changeTeam";
 class App extends Component {
     constructor(props) {
         super(props);
@@ -51,11 +57,16 @@ class App extends Component {
                     <PrivateRoute path="/addTeam" component={addTeam} />
                     <PrivateRoute path="/listProjects" component={listProjects} />
                     <PrivateRoute path="/listCatalog" component={listCatalog} />
+                    <PrivateRoute path="/listTeam" component={listTeam} />
+                    <PrivateRoute path="/listService" component={listService} />
+                    <PrivateRoute path="/listPartners" component={listPartners} />
                     
                     <PrivateRoute path="/addService" component={addService} />
                     <PrivateRoute path="/addPartners" component={addPartners} />
                     <PrivateRoute path="/changeproject/:id" component={changeProject} />
                     <PrivateRoute path="/changecatalog/:id" component={changeCatalog} />
+                    <PrivateRoute path="/changeteam/:id" component={changeTeam} />
+                    <PrivateRoute path="/changeService/:id" component={changeService} />
 
 
                 </div>
