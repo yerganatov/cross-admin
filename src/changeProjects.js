@@ -11,7 +11,6 @@ import { WithContext as ReactTags } from 'react-tag-input';
 import { db, store } from "./firebase";
 
 const KeyCodes = {
-    comma: 188,
     enter: 13,
 };
 

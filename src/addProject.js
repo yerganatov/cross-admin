@@ -10,7 +10,6 @@ import {confirmAlert} from "react-confirm-alert";
 import {WithContext as ReactTags} from "react-tag-input";
 
 const KeyCodes = {
-    comma: 188,
     enter: 13,
 };
 
@@ -175,13 +174,12 @@ class addProject extends Component {
                                     className="highlight"></span><span className="bar"></span>
                                     <label>Результаты</label>
                                 </div>
-
-                                <ReactTags tags={this.state.project.ru.tags}
-                                           handleDelete={(i) => this.handleDelete(i,"ru")}
-                                           handleAddition={(tag) =>this.handleAddition(tag,"ru")}
-                                           handleDrag={this.handleDrag}
-                                           placeholder={"Добавить тэг"}
-                                           delimiters={delimiters} />
+                                    <ReactTags tags={this.state.project.ru.tags}
+                                               handleDelete={(i) => this.handleDelete(i,"ru")}
+                                               handleAddition={(tag) =>this.handleAddition(tag,"ru")}
+                                               handleDrag={this.handleDrag}
+                                               placeholder={"Добавить тэг"}
+                                               delimiters={delimiters} />
                             </div>
 
 
