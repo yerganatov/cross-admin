@@ -167,7 +167,7 @@ class changeProject extends Component {
                                     <label>Результаты</label>
                                 </div>
                                 <div className="group">
-                                    <textarea onChange={(event) => this.changeValue("en", "tags", event)} value={this.state.project.en.tags} type="textarea" rows="3" required="required"></textarea><span
+                                    <textarea onChange={(event) => this.changeValue("ru", "tags", event)} value={this.state.project.ru.tags} type="textarea" rows="3" required="required"></textarea><span
                                     className="highlight"></span><span className="bar"></span>
                                     <label>Теги(Через запятую)</label>
                                 </div>
