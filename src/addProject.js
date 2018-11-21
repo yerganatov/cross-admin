@@ -55,7 +55,9 @@ class addProject extends Component {
         const files = this.fileUpload.files;
         const project = this.state.project;
         const images = this.state.images;
-        db.collection("projects").add(this.state.project)
+        const tags = project.tags.split(",");
+        project.tags = tags;
+        db.collection("projects").add(project)
             .then(async (docRef) => {
                 const storage = store;
                 const storageRef = storage.ref();
