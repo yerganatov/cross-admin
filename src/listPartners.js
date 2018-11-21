@@ -37,7 +37,7 @@ class listCatalog extends Component {
     removeFromList  = (id,index) =>{
         
         try{
-            db.collection("catalog").doc(id).delete().then((docRef) => {
+            db.collection("partners").doc(id).delete().then((docRef) => {
                  delete this.state.projects[index];
                  let ss = this.state.projects;
                 console.log(ss);
