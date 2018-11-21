@@ -4,6 +4,7 @@ import './App.css';
 import InputMask from 'react-input-mask';
 import Sidebar from "./sidebar";
 import {db, store} from "./firebase";
+import {confirmAlert} from "react-confirm-alert";
 
 class addTeam extends Component {
     state = {
@@ -41,11 +42,11 @@ class addTeam extends Component {
         const person = this.state.person;
 
         db.collection("team").add(this.state.person)
-            .then(function (docRef) {
+            .then(async (docRef) => {
                 const storage = store;
                 const storageRef = storage.ref();
                 const newDirectory = docRef.id;
-                Object.values(files).map(async (item) => {
+                await Object.values(files).map(async (item) => {
                     let imagesRef = storageRef.child(`images/${newDirectory}/${item.name}`);
 
                     await imagesRef.put(item).then((span) => {
@@ -61,6 +62,21 @@ class addTeam extends Component {
                     });
 
                 });
+
+                const options = {
+                    title: 'Готово!',
+
+                    buttons: [
+                        {
+                            label: 'Вернутся на главную',
+                            onClick: () => { this.props.history.push('/listTeam')}
+                        }
+                    ],
+                    childrenElement: () => <div />,
+                    willUnmount: () => { }
+                }
+
+                confirmAlert(options)
             })
             .catch(function (error) {
                 console.error("Error writing document: ", error);
@@ -82,64 +98,6 @@ class addTeam extends Component {
         return (
             <div className="App d-flex">
                 <Sidebar isActive="team"/>
-                {/*<div className="main-content p-5 d-flex flex-column">
-                    <h1>Добавление нового персонала </h1>
-                    <p>Все поля обязательны к заполнению</p>
-                    <div className="row">
-                        <div className="col-md-8">
-                            <form className="d-flex flex-column h-100" action="">
-
-                                <h3>Информация на русском языке</h3>
-                                <input onChange={(event) => this.changeValue("ru", "name", event)} placeholder="title"
-                                       value={this.state.person.ru.name} type="text" required/>
-                                <input onChange={(event) => this.changeValue("ru", "workType", event)} placeholder="title"
-                                       value={this.state.person.ru.workType} type="text" required/>
-                                <input onChange={(event) => this.changeValue("ru", "phone", event)} placeholder="title"
-                                       value={this.state.person.ru.phone} type="text" required/>
-                                <input onChange={(event) => this.changeValue("ru", "email", event)} placeholder="title"
-                                       value={this.state.person.ru.email} type="text" required/>
-
-                                <h3>Информация на английском языке</h3>
-                                <input onChange={(event) => this.changeValue("en", "name", event)} placeholder="title"
-                                       value={this.state.person.en.name} type="text" required/>
-                                <input onChange={(event) => this.changeValue("en", "workType", event)} placeholder="title"
-                                       value={this.state.person.en.workType} type="text" required/>
-                                <input onChange={(event) => this.changeValue("en", "phone", event)} placeholder="title"
-                                       value={this.state.person.en.phone} type="text" required/>
-                                <input onChange={(event) => this.changeValue("en", "email", event)} placeholder="title"
-                                       value={this.state.person.en.email} type="text" required/>
-                                <h3>Информация на немецком языке</h3>
-                                <input onChange={(event) => this.changeValue("gr", "name", event)} placeholder="title"
-                                       value={this.state.person.gr.name} type="text" required/>
-                                <input onChange={(event) => this.changeValue("gr", "workType", event)} placeholder="title"
-                                       value={this.state.person.gr.workType} type="text" required/>
-                                <input onChange={(event) => this.changeValue("gr", "phone", event)} placeholder="title"
-                                       value={this.state.person.gr.phone} type="text" required/>
-                                <input onChange={(event) => this.changeValue("gr", "email", event)} placeholder="title"
-                                       value={this.state.person.gr.email} type="text" required/>
-                                <button onClick={() => this.uploadCatalog()} type="button" className="btn btn-primary">
-                                    Добавить
-                                </button>
-                            </form>
-
-                        </div>
-                        <div className="col-md-4">
-                            <label htmlFor="">
-                                <input ref={instance => {
-                                    this.fileUpload = instance
-                                }} type="file" multiple={true} accept={"image/*"}/>
-                                <div>
-                                    {this.state.downloadURLs.map((downloadURL, i) => {
-                                        return <img key={i} src={downloadURL}/>;
-                                    })}
-                                </div>
-
-                            </label>
-                        </div>
-
-                    </div>
-
-                </div>*/}
 
                 <div className="main-content px-4 py-5 d-flex flex-column">
                     <div className="form-div d-flex flex-column align-items-center">

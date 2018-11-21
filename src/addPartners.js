@@ -3,6 +3,7 @@ import "./bootstrap.css";
 import './App.css';
 import Sidebar from "./sidebar";
 import {db, store} from "./firebase";
+import {confirmAlert} from "react-confirm-alert";
 
 class addPartners extends Component {
     state = {
@@ -31,11 +32,11 @@ class addPartners extends Component {
         const files = this.fileUpload.files;
         const project = this.state.project;
         db.collection("partners").add(this.state.project)
-            .then(function (docRef) {
+            .then(async (docRef) => {
                 const storage = store;
                 const storageRef = storage.ref();
                 const newDirectory = docRef.id;
-                Object.values(files).map(async (item) => {
+                await Object.values(files).map(async (item) => {
                     let imagesRef = storageRef.child(`images/${newDirectory}/${item.name}`);
 
                     await imagesRef.put(item).then((span) => {
@@ -51,6 +52,21 @@ class addPartners extends Component {
                     });
 
                 });
+
+                const options = {
+                    title: 'Готово!',
+
+                    buttons: [
+                        {
+                            label: 'Вернутся на главную',
+                            onClick: () => { this.props.history.push('/listPartners')}
+                        }
+                    ],
+                    childrenElement: () => <div />,
+                    willUnmount: () => { }
+                }
+
+                confirmAlert(options)
             })
             .catch(function (error) {
                 console.error("Error writing document: ", error);
@@ -78,39 +94,14 @@ class addPartners extends Component {
                         <hr className="sep"/>
                         <div className="row mx-0 p-0 w-100">
                             <div className="col-6 mb-4">
-                                <h5>Информация на русском языке</h5>
                                 <div className="group">
                                     <input onChange={(event) => this.changeValue("ru", "title", event)} value={this.state.project.ru.title} type="text" required="required"/><span className="highlight"></span><span
                                     className="bar"></span>
-                                    <label>Название проекта</label>
+                                    <label>Ссылка на сайт партнера</label>
                                 </div>
 
                             </div>
 
-
-                            <div className="col-6 mb-4">
-                                <h5>Информация на английском языке</h5>
-                                <div className="group">
-                                    <input onChange={(event) => this.changeValue("en", "title", event)} value={this.state.project.en.title} type="text" required="required"/><span className="highlight"></span><span
-                                    className="bar"></span>
-                                    <label>Название проекта</label>
-                                </div>
-
-                            </div>
-
-                            <div className="col-12">
-                                <hr className="sep w-25"/>
-                            </div>
-
-                            <div className="col-6 mb-4">
-                                <h5>Информация на немецком языке</h5>
-                                <div className="group">
-                                    <input onChange={(event) => this.changeValue("gr", "title", event)} value={this.state.project.gr.title} type="text" required="required"/><span className="highlight"></span><span
-                                    className="bar"></span>
-                                    <label>Название проекта</label>
-                                </div>
-
-                            </div>
 
                             <div className="col-6 mb-4">
                                 <h5>Изображения для загрузки </h5>

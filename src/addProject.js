@@ -4,6 +4,7 @@ import './App.css';
 import Sidebar from "./sidebar";
 
 import {db, store} from "./firebase";
+import {confirmAlert} from "react-confirm-alert";
 
 class addProject extends Component {
     state = {
@@ -55,11 +56,11 @@ class addProject extends Component {
         const project = this.state.project;
         const images = this.state.images;
         db.collection("projects").add(this.state.project)
-            .then(function (docRef) {
+            .then(async (docRef) => {
                 const storage = store;
                 const storageRef = storage.ref();
                 const newDirectory = docRef.id;
-                Object.values(files).map(async (item) => {
+                await Object.values(files).map(async (item) => {
                     let imagesRef = storageRef.child(`images/${newDirectory}/${item.name}`);
                     await imagesRef.put(item).then((span) => {
                         store
@@ -72,7 +73,22 @@ class addProject extends Component {
                         });
 
                     });
-                })
+                });
+
+                const options = {
+                    title: 'Готово!',
+
+                    buttons: [
+                        {
+                            label: 'Вернутся на главную',
+                            onClick: () => { this.props.history.push('/listProjects')}
+                        }
+                    ],
+                    childrenElement: () => <div />,
+                    willUnmount: () => { }
+                }
+
+                confirmAlert(options)
 
             })
             .catch(function (error) {
@@ -199,7 +215,7 @@ class addProject extends Component {
                                 <div className="group">
                                     <textarea onChange={(event) => this.changeValue("gr", "tags", event)} value={this.state.project.gr.tags} type="textarea" rows="3" required="required"></textarea><span
                                     className="highlight"></span><span className="bar"></span>
-                                    <label>Теги(Через запятую)</label>
+                                    <label>Теги (Через запятую)</label>
                                 </div>
                             </div>
 

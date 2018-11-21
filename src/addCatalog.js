@@ -3,6 +3,7 @@ import "./bootstrap.css";
 import './App.css';
 import Sidebar from "./sidebar";
 import {db, store} from "./firebase";
+import {confirmAlert} from "react-confirm-alert";
 
 class addCatalog extends Component {
     state = {
@@ -45,11 +46,11 @@ class addCatalog extends Component {
         const project = this.state.project;
         project["date"] = this.state.startDate;
         db.collection("catalog").add(this.state.project)
-            .then(function (docRef) {
+            .then( async (docRef) => {
                 const storage = store;
                 const storageRef = storage.ref();
                 const newDirectory = docRef.id;
-                Object.values(files).map(async (item) => {
+                await  Object.values(files).map(async (item) => {
                     let imagesRef = storageRef.child(`images/${newDirectory}/${item.name}`);
 
                     await imagesRef.put(item).then((span) => {
@@ -65,6 +66,20 @@ class addCatalog extends Component {
                     });
 
                 });
+                const options = {
+                    title: 'Готово!',
+
+                    buttons: [
+                        {
+                            label: 'Вернутся на главную',
+                            onClick: () => { this.props.history.push('/listCatalog')}
+                        }
+                    ],
+                    childrenElement: () => <div />,
+                    willUnmount: () => { }
+                }
+
+                confirmAlert(options)
             })
             .catch(function (error) {
                 console.error("Error writing document: ", error);

@@ -4,6 +4,7 @@ import './App.css';
 import Sidebar from "./sidebar";
 
 import {db, store} from "./firebase";
+import {confirmAlert} from "react-confirm-alert";
 
 class addService extends Component {
     state = {
@@ -40,8 +41,21 @@ class addService extends Component {
 
     uploadProject = async () => {
         db.collection("services").add(this.state.project)
-            .then(function (docRef) {
+            .then( (docRef) => {
+                const options = {
+                    title: 'Готово!',
 
+                    buttons: [
+                        {
+                            label: 'Вернутся на главную',
+                            onClick: () => { this.props.history.push('/listService')}
+                        }
+                    ],
+                    childrenElement: () => <div />,
+                    willUnmount: () => { }
+                }
+
+                confirmAlert(options)
             })
             .catch(function (error) {
                 console.error("Error writing document: ", error);
@@ -73,12 +87,12 @@ class addService extends Component {
                                 <div className="group">
                                     <input onChange={(event) => this.changeValue("ru", "title", event)} value={this.state.project.ru.title} type="text" required="required"/><span className="highlight"></span><span
                                     className="bar"></span>
-                                    <label>Название проекта</label>
+                                    <label>Заголовок услуги</label>
                                 </div>
                                 <div className="group">
                                     <textarea onChange={(event) => this.changeValue("ru", "description", event)} value={this.state.project.ru.description} type="textarea" rows="5" required="required"></textarea><span className="highlight"></span><span
                                     className="bar"></span>
-                                    <label>О клиенте</label>
+                                    <label>Описание услуги</label>
                                 </div>
 
                             </div>
@@ -89,12 +103,12 @@ class addService extends Component {
                                 <div className="group">
                                     <input onChange={(event) => this.changeValue("en", "title", event)} value={this.state.project.en.title} type="text" required="required"/><span className="highlight"></span><span
                                     className="bar"></span>
-                                    <label>Название проекта</label>
+                                    <label>Заголовок услуги</label>
                                 </div>
                                 <div className="group">
                                     <textarea onChange={(event) => this.changeValue("en", "description", event)} value={this.state.project.en.description} type="textarea" rows="5" required="required"></textarea><span className="highlight"></span><span
                                     className="bar"></span>
-                                    <label>О клиенте</label>
+                                    <label>Описание услуги</label>
                                 </div>
 
                             </div>
@@ -104,12 +118,12 @@ class addService extends Component {
                                 <div className="group">
                                     <input onChange={(event) => this.changeValue("gr", "title", event)} value={this.state.project.gr.title} type="text" required="required"/><span className="highlight"></span><span
                                     className="bar"></span>
-                                    <label>Название проекта</label>
+                                    <label>Заголовок услуги</label>
                                 </div>
                                 <div className="group">
                                     <textarea onChange={(event) => this.changeValue("gr", "description", event)} value={this.state.project.gr.description} type="textarea" rows="5" required="required"></textarea><span className="highlight"></span><span
                                     className="bar"></span>
-                                    <label>О клиенте</label>
+                                    <label>Описание услуги</label>
                                 </div>
 
                             </div>

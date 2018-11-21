@@ -66,6 +66,7 @@ a, a:hover, a:active {
   margin: 45px auto;
 }
 .form-div h1 {
+  text-transform: uppercase;
   font-size: 3em;
   font-weight: 300;
   text-align: center;

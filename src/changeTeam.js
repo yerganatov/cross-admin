@@ -88,7 +88,7 @@ class changeTeam extends Component {
                 buttons: [
                     {
                         label: 'Да',
-                        onClick: () => { this.props.history.push('/listteam')}
+                        onClick: () => { this.props.history.push('/listTeam')}
                     },
                     {
                         label: 'Нет',
@@ -128,68 +128,10 @@ class changeTeam extends Component {
         return (
             <div className="App d-flex">
                 <Sidebar isActive="team"/>
-                {/*<div className="main-content p-5 d-flex flex-column">
-                    <h1>Добавление нового персонала </h1>
-                    <p>Все поля обязательны к заполнению</p>
-                    <div className="row">
-                        <div className="col-md-8">
-                            <form className="d-flex flex-column h-100" action="">
-
-                                <h3>Информация на русском языке</h3>
-                                <input onChange={(event) => this.changeValue("ru", "name", event)} placeholder="title"
-                                       value={this.state.person.ru.name} type="text" required/>
-                                <input onChange={(event) => this.changeValue("ru", "workType", event)} placeholder="title"
-                                       value={this.state.person.ru.workType} type="text" required/>
-                                <input onChange={(event) => this.changeValue("ru", "phone", event)} placeholder="title"
-                                       value={this.state.person.ru.phone} type="text" required/>
-                                <input onChange={(event) => this.changeValue("ru", "email", event)} placeholder="title"
-                                       value={this.state.person.ru.email} type="text" required/>
-
-                                <h3>Информация на английском языке</h3>
-                                <input onChange={(event) => this.changeValue("en", "name", event)} placeholder="title"
-                                       value={this.state.person.en.name} type="text" required/>
-                                <input onChange={(event) => this.changeValue("en", "workType", event)} placeholder="title"
-                                       value={this.state.person.en.workType} type="text" required/>
-                                <input onChange={(event) => this.changeValue("en", "phone", event)} placeholder="title"
-                                       value={this.state.person.en.phone} type="text" required/>
-                                <input onChange={(event) => this.changeValue("en", "email", event)} placeholder="title"
-                                       value={this.state.person.en.email} type="text" required/>
-                                <h3>Информация на немецком языке</h3>
-                                <input onChange={(event) => this.changeValue("gr", "name", event)} placeholder="title"
-                                       value={this.state.person.gr.name} type="text" required/>
-                                <input onChange={(event) => this.changeValue("gr", "workType", event)} placeholder="title"
-                                       value={this.state.person.gr.workType} type="text" required/>
-                                <input onChange={(event) => this.changeValue("gr", "phone", event)} placeholder="title"
-                                       value={this.state.person.gr.phone} type="text" required/>
-                                <input onChange={(event) => this.changeValue("gr", "email", event)} placeholder="title"
-                                       value={this.state.person.gr.email} type="text" required/>
-                                <button onClick={() => this.uploadCatalog()} type="button" className="btn btn-primary">
-                                    Добавить
-                                </button>
-                            </form>
-
-                        </div>
-                        <div className="col-md-4">
-                            <label htmlFor="">
-                                <input ref={instance => {
-                                    this.fileUpload = instance
-                                }} type="file" multiple={true} accept={"image/*"}/>
-                                <div>
-                                    {this.state.downloadURLs.map((downloadURL, i) => {
-                                        return <img key={i} src={downloadURL}/>;
-                                    })}
-                                </div>
-
-                            </label>
-                        </div>
-
-                    </div>
-
-                </div>*/}
 
                 <div className="main-content px-4 py-5 d-flex flex-column">
                     <div className="form-div d-flex flex-column align-items-center">
-                        <h1>ДОБАВЛЕНИЕ ПЕРСОНАЛА</h1>
+                        <h1>ИЗМЕНЕНИЕ ПЕРСОНАЛА</h1>
                         <hr className="sep"/>
                         <div className="row mx-0 p-0 w-100">
                             <div className="col-6 mb-4">
@@ -297,7 +239,7 @@ class changeTeam extends Component {
                         </div>
 
                         <div className="btn-box">
-                            <button onClick={() => this.uploadCatalog()} className="btn btn-submit" type="submit">Добавить</button>
+                            <button onClick={() => this.uploadCatalog()} className="btn btn-submit" type="submit">Изменить</button>
                         </div>
                     </div>
                 </div>
