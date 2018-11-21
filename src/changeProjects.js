@@ -76,8 +76,6 @@ class changeProject extends Component {
         const images = this.state.images;
         project.images = this.state.images;
         const id = this.props.match.params.id;
-        const tags = project.tags.split(",");
-        project.tags = tags;
         db.collection("projects").doc(this.props.match.params.id).set(project).then(async (docRef) => {
             const storage = store;
             const storageRef = storage.ref();
