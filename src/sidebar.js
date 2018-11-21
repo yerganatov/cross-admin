@@ -16,14 +16,15 @@ class Sidebar extends  Component {
     };
 
     render(){
+        const {isActive} = this.props; 
         return(
             <div className="sidebar d-flex flex-column py-4">
                 <a className="d-flex justify-content-center align-self-center mb-4" href=""><img src={process.env.PUBLIC_URL + 'logo-mobile.png'} alt="" /></a>
-                <a href="/listCatalog">Каталоги</a>
-                <a href="/listProjects">Проекты</a>
-                <a href="/listTeam">Команда</a>
-                <a href="/listService">Услуги</a>
-                <a href="/listPartners">Партнеры</a>
+                <a className={isActive=== "catalog" && "active"} href="/listCatalog">Каталоги</a>
+                <a className={isActive=== "projects" && "active"} href="/listProjects">Проекты</a>
+                <a className={isActive=== "team" && "active"} href="/listTeam">Команда</a>
+                <a className={isActive=== "service" && "active"} href="/listService">Услуги</a>
+                <a className={isActive=== "partners" && "active"} href="/listPartners">Партнеры</a>
                 <a onClick={this.signOut} href="">Выйти</a>
             </div>
         )

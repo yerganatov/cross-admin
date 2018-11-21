@@ -129,7 +129,7 @@ class changeTeam extends Component {
     render() {
         return (
             <div className="App d-flex">
-                <Sidebar/>
+                <Sidebar isActive="team"/>
                 {/*<div className="main-content p-5 d-flex flex-column">
                     <h1>Добавление нового персонала </h1>
                     <p>Все поля обязательны к заполнению</p>

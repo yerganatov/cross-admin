@@ -94,7 +94,7 @@ class addProject extends Component {
     render() {
         return (
             <div className="App d-flex">
-                <Sidebar/>
+                <Sidebar isActive="projects"/>
                 <div className="main-content px-4 py-5 d-flex flex-column">
                     <div className="form-div d-flex flex-column align-items-center">
                         <h1>ДОБАВЛЕНИЕ ПРОЕКТА</h1>

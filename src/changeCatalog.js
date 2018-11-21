@@ -73,8 +73,7 @@ class changeCatalog extends Component {
                         .ref(`images/${newDirectory}/`)
                         .child(item.name)
                         .getDownloadURL().then(url => {
-                            images.push(url);
-                            project["images"] = images;
+                            project["image"] = url;
                             db.collection("projects").doc(newDirectory).set(project);
                         });
 
@@ -122,7 +121,7 @@ class changeCatalog extends Component {
     render() {
         return (
             <div className="App d-flex">
-                <Sidebar/>
+                <Sidebar isActive="catalog"/>
                 <div className="main-content px-4 py-5 d-flex flex-column">
                     <div className="form-div d-flex flex-column align-items-center">
                         <h1>ИЗМЕНЕНИЕ КАТАЛОГА</h1>
