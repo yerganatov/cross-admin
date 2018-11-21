@@ -74,7 +74,7 @@ class changeCatalog extends Component {
                         .child(item.name)
                         .getDownloadURL().then(url => {
                             project["image"] = url;
-                            db.collection("projects").doc(newDirectory).set(project);
+                            db.collection("catalog").doc(newDirectory).set(project);
                         });
 
                 });
