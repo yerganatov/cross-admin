@@ -166,6 +166,11 @@ class changeProject extends Component {
                                         className="highlight"></span><span className="bar"></span>
                                     <label>Результаты</label>
                                 </div>
+                                <div className="group">
+                                    <textarea onChange={(event) => this.changeValue("en", "tags", event)} value={this.state.project.en.tags} type="textarea" rows="3" required="required"></textarea><span
+                                    className="highlight"></span><span className="bar"></span>
+                                    <label>Теги(Через запятую)</label>
+                                </div>
                             </div>
 
 
@@ -196,6 +201,11 @@ class changeProject extends Component {
                                         className="highlight"></span><span className="bar"></span>
                                     <label>Результаты</label>
                                 </div>
+                                <div className="group">
+                                    <textarea onChange={(event) => this.changeValue("en", "tags", event)} value={this.state.project.en.tags} type="textarea" rows="3" required="required"></textarea><span
+                                    className="highlight"></span><span className="bar"></span>
+                                    <label>Теги(Через запятую)</label>
+                                </div>
                             </div>
 
                             <div className="col-6 mb-4">
@@ -224,6 +234,11 @@ class changeProject extends Component {
                                     <textarea onChange={(event) => this.changeValue("gr", "result", event)} value={this.state.project.gr.result} type="textarea" rows="3" required="required"></textarea><span
                                         className="highlight"></span><span className="bar"></span>
                                     <label>Результаты</label>
+                                </div>
+                                <div className="group">
+                                    <textarea onChange={(event) => this.changeValue("gr", "tags", event)} value={this.state.project.gr.tags} type="textarea" rows="3" required="required"></textarea><span
+                                    className="highlight"></span><span className="bar"></span>
+                                    <label>Теги(Через запятую)</label>
                                 </div>
                             </div>
 

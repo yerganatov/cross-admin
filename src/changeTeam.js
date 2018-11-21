@@ -64,7 +64,6 @@ class changeTeam extends Component {
         const files = this.fileUpload.files;
         const project = this.state.person;
         const images = this.state.images[0];
-        project.image = this.state.images[0];
         const id = this.props.match.params.id;
         db.collection("team").doc(this.props.match.params.id).set(project).then(async (docRef) => {
             const storage = store;
@@ -77,8 +76,7 @@ class changeTeam extends Component {
                         .ref(`images/${newDirectory}/`)
                         .child(item.name)
                         .getDownloadURL().then(url => {
-                            images.push(url);
-                            project["image"] = images;
+                            project["image"] = url;
                             db.collection("team").doc(newDirectory).set(project);
                         });
 
