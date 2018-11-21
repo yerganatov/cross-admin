@@ -124,6 +124,8 @@ class addPartners extends Component {
                         <hr className="sep"/>
                         <div className="row mx-0 p-0 w-100">
                             <div className="col-6 mb-4">
+                                <h5>Обязательно писать в формате <strong>(http://, https://) <br/>
+                                    Например, https://www.nur.kz/ </strong> </h5>
                                 <div className="group">
                                     <input onChange={(event) => this.changeValue("ru", "title", event)} value={this.state.project.ru.title} type="text" required="required"/><span className="highlight"></span><span
                                     className="bar"></span>
