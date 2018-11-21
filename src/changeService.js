@@ -80,7 +80,6 @@ class addService extends Component {
 
     changeValue = async (language, key, event) => {
         const value = event.target.value;
-        console.log(value)
         await this.setState(state => {
             state["project"][language][key] = value;
             return state;
@@ -101,7 +100,7 @@ class addService extends Component {
                             <div className="col-6 mb-4">
                                 <h5>Информация на русском языке</h5>
                                 <div className="group">
-                                    <input onChange={(event) => this.changeValue("ru", "title", event)} value={this.state.project.ru.title} type="text" required="required"/><span className="highlight"></span><span
+                                    <input className="input-style" onChange={(event) => this.changeValue("ru", "title", event)} value={this.state.project.ru.title} type="text" required="required"/><span className="highlight"></span><span
                                     className="bar"></span>
                                     <label>Заголовок услуги</label>
                                 </div>
@@ -117,7 +116,7 @@ class addService extends Component {
                             <div className="col-6 mb-4">
                                 <h5>Информация на английском языке</h5>
                                 <div className="group">
-                                    <input onChange={(event) => this.changeValue("en", "title", event)} value={this.state.project.en.title} type="text" required="required"/><span className="highlight"></span><span
+                                    <input className="input-style" onChange={(event) => this.changeValue("en", "title", event)} value={this.state.project.en.title} type="text" required="required"/><span className="highlight"></span><span
                                     className="bar"></span>
                                     <label>Заголовок услуги</label>
                                 </div>
@@ -132,7 +131,7 @@ class addService extends Component {
                             <div className="col-6 mb-4">
                                 <h5>Информация на немецком языке</h5>
                                 <div className="group">
-                                    <input onChange={(event) => this.changeValue("gr", "title", event)} value={this.state.project.gr.title} type="text" required="required"/><span className="highlight"></span><span
+                                    <input className="input-style" onChange={(event) => this.changeValue("gr", "title", event)} value={this.state.project.gr.title} type="text" required="required"/><span className="highlight"></span><span
                                     className="bar"></span>
                                     <label>Заголовок услуги</label>
                                 </div>

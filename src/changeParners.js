@@ -4,7 +4,6 @@ import './App.css';
 import Sidebar from "./sidebar";
 import {db, store} from "./firebase";
 import { confirmAlert } from 'react-confirm-alert'; // Import
-import 'react-confirm-alert/src/react-confirm-alert.css'
 
 class addPartners extends Component {
     state = {
@@ -37,7 +36,6 @@ class addPartners extends Component {
             const snapshot = await db.collection('partners').doc(this.props.match.params.id).get();
             let project = snapshot.data();
             let images = this.state.images;
-            console.log(project)
             images.push(project.image)
             this.setState({
                 project: project,
@@ -104,7 +102,6 @@ class addPartners extends Component {
     };
 
     removeImage = (index) => {
-        console.log(index);
         let imageList = this.state.images;
         imageList.splice(index, 1);
         this.setState({
@@ -127,7 +124,7 @@ class addPartners extends Component {
                                 <h5>Обязательно писать в формате <strong>(http://, https://) <br/>
                                     Например, https://www.nur.kz/ </strong> </h5>
                                 <div className="group">
-                                    <input onChange={(event) => this.changeValue("ru", "title", event)} value={this.state.project.ru.title} type="text" required="required"/><span className="highlight"></span><span
+                                    <input className="input-style" onChange={(event) => this.changeValue("ru", "title", event)} value={this.state.project.ru.title} type="text" required="required"/><span className="highlight"></span><span
                                     className="bar"></span>
                                     <label>Ссылка на сайт партнера</label>
                                 </div>
@@ -137,7 +134,7 @@ class addPartners extends Component {
                          <div className="col-6 mb-4">
                                 <h5>Изображения для загрузки <br /> (Можно загрузить несколько изображений)</h5>
                                 <div>
-                                    <input ref={instance => {
+                                    <input className="input-style" ref={instance => {
                                         this.fileUpload = instance
                                     }} type="file" multiple={true} accept={"image/*"} required />
                                     <div className="container">

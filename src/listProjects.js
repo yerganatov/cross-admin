@@ -20,14 +20,12 @@ class listProjects extends Component {
             const snapshots = await db.collection('projects').get();
             let problems = [];
             snapshots.forEach(s => {
-                console.log(s);
                 const data = s.data();
                 data["id"] = s.id;
                 problems.push(data);
             });
             console.log(problems);
             let projects = problems;
-            console.log("projects", projects);
             await this.setState({projects: [...projects]});
             console.log(this.state.projects);
         } catch (error) {
@@ -40,7 +38,6 @@ class listProjects extends Component {
             db.collection("projects").doc(id).delete().then((docRef) => {
                  delete this.state.projects[index];
                  let ss = this.state.projects;
-                console.log(ss);
                 this.setState({
                     projects:ss
                 })

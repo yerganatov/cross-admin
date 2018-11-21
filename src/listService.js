@@ -20,7 +20,6 @@ class listService extends Component {
             const snapshots = await db.collection('services').get();
             let problems = [];
             snapshots.forEach(s => {
-                console.log(s);
                 const data = s.data();
                 data["id"] = s.id;
                 problems.push(data);
@@ -37,7 +36,6 @@ class listService extends Component {
             db.collection("services").doc(id).delete().then((docRef) => {
                  delete this.state.projects[index];
                  let ss = this.state.projects;
-                console.log(ss);
                 this.setState({
                     projects:ss
                 })

@@ -75,7 +75,6 @@ class addPartners extends Component {
 
     changeValue = async (language, key, event) => {
         const value = event.target.value;
-        console.log(value)
         await this.setState(state => {
             state["project"][language][key] = value;
             return state;
@@ -97,7 +96,7 @@ class addPartners extends Component {
                                 <h5>Обязательно писать в формате <strong>(http://, https://) <br/>
                                 Например, https://www.nur.kz/ </strong> </h5>
                                 <div className="group">
-                                    <input onChange={(event) => this.changeValue("ru", "title", event)} value={this.state.project.ru.title} type="text" required="required"/><span className="highlight"></span><span
+                                    <input className="input-style" onChange={(event) => this.changeValue("ru", "title", event)} value={this.state.project.ru.title} type="text" required="required"/><span className="highlight"></span><span
                                     className="bar"></span>
                                     <label>Ссылка на сайт партнера</label>
                                 </div>
@@ -108,7 +107,7 @@ class addPartners extends Component {
                             <div className="col-6 mb-4">
                                 <h5>Изображения для загрузки </h5>
                                 <div>
-                                    <input ref={instance => {
+                                    <input className="input-style" ref={instance => {
                                         this.fileUpload = instance
                                     }} type="file" multiple={false} accept={"image/*"} required/>
                                     <div>

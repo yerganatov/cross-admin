@@ -19,7 +19,6 @@ class listTeam extends Component {
         try {
             const snapshots = await db.collection('team').get();
             let problems = [];
-            console.log(snapshots);
             snapshots.forEach(s => {
                 const data = s.data();
                 data["id"] = s.id;
@@ -49,7 +48,6 @@ class listTeam extends Component {
         }
     }
     alertDelete = (id,index) => {
-        console.log(id)
         const options = {
             title: 'Удалить!',
             message: 'Вы точно хотите удалить?',

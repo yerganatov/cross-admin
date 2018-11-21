@@ -107,7 +107,6 @@ class changeTeam extends Component {
 
     changeValue = async (language, key, event) => {
         const value = event.target.value;
-        console.log(value)
         await this.setState(state => {
             state["person"][language][key] = value;
             return state;
@@ -122,7 +121,6 @@ class changeTeam extends Component {
         this.setState({
             images: imageList
         })
-        console.log(this.state.images);
     }
 
     render() {
@@ -138,23 +136,23 @@ class changeTeam extends Component {
                             <div className="col-6 mb-4">
                                 <h5>Информация на русском языке</h5>
                                 <div className="group">
-                                    <input onChange={(event) => this.changeValue("ru", "name", event)} value={this.state.person.ru.name} type="text" required="required"/><span className="highlight"></span><span
+                                    <input className="input-style" onChange={(event) => this.changeValue("ru", "name", event)} value={this.state.person.ru.name} type="text" required="required"/><span className="highlight"></span><span
                                     className="bar"></span>
                                     <label>Имя Фамилия</label>
                                 </div>
                                 <div className="group">
-                                    <input onChange={(event) => this.changeValue("ru", "workType", event)} value={this.state.person.ru.workType} type="text" required="required"/><span className="highlight"></span><span
+                                    <input className="input-style" onChange={(event) => this.changeValue("ru", "workType", event)} value={this.state.person.ru.workType} type="text" required="required"/><span className="highlight"></span><span
                                     className="bar"></span>
                                     <label>Должность или позиция</label>
                                 </div>
                                 <div className="group">
-                                    <InputMask onChange={(event) => this.changeValue("ru", "phone", event)} value={this.state.person.ru.phone} mask="+7 (999) 999-99-99" required="required"/>
+                                    <input className="input-style"Mask onChange={(event) => this.changeValue("ru", "phone", event)} value={this.state.person.ru.phone} mask="+7 (999) 999-99-99" required="required"/>
                                     <span className="highlight"></span><span
                                     className="bar"></span>
                                     <label>Номер телефона</label>
                                 </div>
                                 <div className="group">
-                                    <input onChange={(event) => this.changeValue("ru", "email", event)} value={this.state.person.ru.email} type="email" required="required"/><span className="highlight"></span><span
+                                    <input className="input-style" onChange={(event) => this.changeValue("ru", "email", event)} value={this.state.person.ru.email} type="email" required="required"/><span className="highlight"></span><span
                                     className="bar"></span>
                                     <label>Электронный адрес</label>
                                 </div>
@@ -164,23 +162,23 @@ class changeTeam extends Component {
                             <div className="col-6 mb-4">
                                 <h5>Информация на английском языке</h5>
                                 <div className="group">
-                                    <input onChange={(event) => this.changeValue("en", "name", event)} value={this.state.person.en.name} type="text" required="required"/><span className="highlight"></span><span
+                                    <input className="input-style" onChange={(event) => this.changeValue("en", "name", event)} value={this.state.person.en.name} type="text" required="required"/><span className="highlight"></span><span
                                     className="bar"></span>
                                     <label>Имя Фамилия</label>
                                 </div>
                                 <div className="group">
-                                    <input onChange={(event) => this.changeValue("en", "workType", event)} value={this.state.person.en.workType} type="text" required="required"/><span className="highlight"></span><span
+                                    <input className="input-style" onChange={(event) => this.changeValue("en", "workType", event)} value={this.state.person.en.workType} type="text" required="required"/><span className="highlight"></span><span
                                     className="bar"></span>
                                     <label>Должность или позиция</label>
                                 </div>
                                 <div className="group">
-                                    <InputMask onChange={(event) => this.changeValue("en", "phone", event)} value={this.state.person.en.phone} mask="+7 (999) 999-99-99" required="required"/>
+                                    <input className="input-style"Mask onChange={(event) => this.changeValue("en", "phone", event)} value={this.state.person.en.phone} mask="+7 (999) 999-99-99" required="required"/>
                                     <span className="highlight"></span><span
                                     className="bar"></span>
                                     <label>Номер телефона</label>
                                 </div>
                                 <div className="group">
-                                    <input onChange={(event) => this.changeValue("en", "email", event)} value={this.state.person.en.email} type="email" required="required"/><span className="highlight"></span><span
+                                    <input className="input-style" onChange={(event) => this.changeValue("en", "email", event)} value={this.state.person.en.email} type="email" required="required"/><span className="highlight"></span><span
                                     className="bar"></span>
                                     <label>Электронный адрес</label>
                                 </div>
@@ -193,23 +191,23 @@ class changeTeam extends Component {
                             <div className="col-6 mb-4">
                                 <h5>Информация на немецком языке</h5>
                                 <div className="group">
-                                    <input onChange={(event) => this.changeValue("gr", "name", event)} value={this.state.person.gr.name} type="text" required="required"/><span className="highlight"></span><span
+                                    <input className="input-style" onChange={(event) => this.changeValue("gr", "name", event)} value={this.state.person.gr.name} type="text" required="required"/><span className="highlight"></span><span
                                     className="bar"></span>
                                     <label>Имя Фамилия</label>
                                 </div>
                                 <div className="group">
-                                    <input onChange={(event) => this.changeValue("gr", "workType", event)} value={this.state.person.gr.workType} type="text" required="required"/><span className="highlight"></span><span
+                                    <input className="input-style" onChange={(event) => this.changeValue("gr", "workType", event)} value={this.state.person.gr.workType} type="text" required="required"/><span className="highlight"></span><span
                                     className="bar"></span>
                                     <label>Должность, позиция</label>
                                 </div>
                                 <div className="group">
-                                    <InputMask onChange={(event) => this.changeValue("gr", "phone", event)} value={this.state.person.gr.phone} mask="+7 (999) 999-99-99" required="required"/>
+                                    <input className="input-style"Mask onChange={(event) => this.changeValue("gr", "phone", event)} value={this.state.person.gr.phone} mask="+7 (999) 999-99-99" required="required"/>
                                     <span className="highlight"></span><span
                                     className="bar"></span>
                                     <label>Номер телефона</label>
                                 </div>
                                 <div className="group">
-                                    <input onChange={(event) => this.changeValue("gr", "email", event)} value={this.state.person.gr.email} type="email" required="required"/><span className="highlight"></span><span
+                                    <input className="input-style" onChange={(event) => this.changeValue("gr", "email", event)} value={this.state.person.gr.email} type="email" required="required"/><span className="highlight"></span><span
                                     className="bar"></span>
                                     <label>Электронный адрес</label>
                                 </div>
@@ -218,7 +216,7 @@ class changeTeam extends Component {
                             <div className="col-6 mb-4">
                                 <h5>Изображения для загрузки </h5>
                                 <div>
-                                    <input  ref={instance => {
+                                    <input className="input-style"  ref={instance => {
                                         this.fileUpload = instance
                                     }} type="file" multiple={false} accept={"image/*"} required="required"/>
                                     <div className="container">

@@ -41,7 +41,6 @@ class changeCatalog extends Component {
         try {
             const snapshot = await db.collection('catalog').doc(this.props.match.params.id).get();
             let project = snapshot.data();
-            console.log(project);
             this.setState({
                 project: project,
                 image:project.image,
@@ -108,7 +107,6 @@ class changeCatalog extends Component {
             state["project"][language][key] = value;
             return state;
         })
-        console.log(this.state);
     };
     removeImage = async () => {
         const image = this.state.image;
@@ -130,7 +128,7 @@ class changeCatalog extends Component {
                             <div className="col-6 mb-4">
                                 <h5>Информация на русском языке</h5>
                                 <div className="group">
-                                    <input onChange={(event) => this.changeValue("ru", "title", event)} value={this.state.project.ru.title} type="text" required="required"/><span className="highlight"></span><span
+                                    <input className="input-style" onChange={(event) => this.changeValue("ru", "title", event)} value={this.state.project.ru.title} type="text" required="required"/><span className="highlight"></span><span
                                     className="bar"></span>
                                     <label>Название проекта</label>
                                 </div>
@@ -150,7 +148,7 @@ class changeCatalog extends Component {
                             <div className="col-6 mb-4">
                                 <h5>Информация на английском языке</h5>
                                 <div className="group">
-                                    <input onChange={(event) => this.changeValue("en", "title", event)} value={this.state.project.en.title} type="text" required="required"/><span className="highlight"></span><span
+                                    <input className="input-style" onChange={(event) => this.changeValue("en", "title", event)} value={this.state.project.en.title} type="text" required="required"/><span className="highlight"></span><span
                                     className="bar"></span>
                                     <label>Название проекта</label>
                                 </div>
@@ -173,7 +171,7 @@ class changeCatalog extends Component {
                             <div className="col-6 mb-4">
                                 <h5>Информация на немецком языке</h5>
                                 <div className="group">
-                                    <input onChange={(event) => this.changeValue("gr", "title", event)} value={this.state.project.gr.title} type="text" required="required"/><span className="highlight"></span><span
+                                    <input className="input-style" onChange={(event) => this.changeValue("gr", "title", event)} value={this.state.project.gr.title} type="text" required="required"/><span className="highlight"></span><span
                                     className="bar"></span>
                                     <label>Название проекта</label>
                                 </div>
@@ -192,7 +190,7 @@ class changeCatalog extends Component {
                             <div className="col-6 mb-4">
                                 <h5>Изображения для загрузки <br/> (Можно загрузить несколько изображений)</h5>
                                 <div className="row">
-                                    <input ref={instance => {
+                                    <input className="input-style" ref={instance => {
                                         this.fileUpload = instance
                                     }} type="file" multiple={false} accept={"image/*"} required/>
                                     <div className="disp-wrap">
@@ -202,7 +200,7 @@ class changeCatalog extends Component {
                                     </div>
                                 </div>
                                 <h5 className="mt-5">Дата</h5>
-                                <input type="date" onChange={(event) => {
+                                <input className="input-style" type="date" onChange={(event) => {
                                     this.setState({startDate: event.target.value})
                                     console.log(this.state.startDate)
                                 }} value={this.state.startDate} />

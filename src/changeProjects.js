@@ -2,10 +2,22 @@ import React, { Component } from 'react';
 import "./bootstrap.css";
 import './App.css';
 import Sidebar from "./sidebar";
+
+import "react-tag-input/dist-modules/styles/react-tags.scss";
+
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'
-
+import { WithContext as ReactTags } from 'react-tag-input';
 import { db, store } from "./firebase";
+
+const KeyCodes = {
+    comma: 188,
+    enter: 13,
+};
+
+
+const delimiters = [KeyCodes.comma, KeyCodes.enter];
+
 
 class changeProject extends Component {
     state = {
@@ -50,7 +62,6 @@ class changeProject extends Component {
         try {
             const snapshot = await db.collection('projects').doc(this.props.match.params.id).get();
             let project = snapshot.data();
-            console.log(project);
             this.setState({
                 project: project,
                 images: project.images
@@ -118,7 +129,6 @@ class changeProject extends Component {
             state["project"][language][key] = value;
             return state;
         })
-        console.log(this.state);
     }
 
     removeImage = (index) => {
@@ -128,7 +138,20 @@ class changeProject extends Component {
         this.setState({
             images: imageList
         })
-        console.log(this.state.images);
+    }
+
+    handleDelete = (i,language) => {
+        this.setState( state => {
+            state["project"][language]["tags"] = state["project"][language]["tags"].filter((tag, index) => index !== i);
+            return state;
+        });
+    }
+
+    handleAddition = (tag,language) => {
+        this.setState(state => { state["project"][language]["tags"] =  [...state["project"][language]["tags"], tag] ;
+            return state;
+
+        });
     }
 
 
@@ -144,7 +167,7 @@ class changeProject extends Component {
                             <div className="col-6 mb-4">
                                 <h5>Информация на русском языке</h5>
                                 <div className="group">
-                                    <input onChange={(event) => this.changeValue("ru", "title", event)} value={this.state.project.ru.title} type="text" required="required" /><span className="highlight"></span><span
+                                    <input className="input-style" onChange={(event) => this.changeValue("ru", "title", event)} value={this.state.project.ru.title} type="text" required="required" /><span className="highlight"></span><span
                                         className="bar"></span>
                                     <label>Название проекта</label>
                                 </div>
@@ -168,18 +191,17 @@ class changeProject extends Component {
                                         className="highlight"></span><span className="bar"></span>
                                     <label>Результаты</label>
                                 </div>
-                                <div className="group">
-                                    <textarea onChange={(event) => this.changeValue("ru", "tags", event)} value={this.state.project.ru.tags} type="textarea" rows="3" required="required"></textarea><span
-                                    className="highlight"></span><span className="bar"></span>
-                                    <label>Теги(Через запятую)</label>
-                                </div>
+                                <ReactTags tags={this.state.project.ru.tags}
+                                           handleDelete={(i) => this.handleDelete(i,"ru")}
+                                           handleAddition={(tag) =>this.handleAddition(tag,"ru")}
+                                           delimiters={delimiters} />
                             </div>
 
 
                             <div className="col-6 mb-4">
                                 <h5>Информация на английском языке</h5>
                                 <div className="group">
-                                    <input onChange={(event) => this.changeValue("en", "title", event)} value={this.state.project.en.title} type="text" required="required" /><span className="highlight"></span><span
+                                    <input className="input-style" onChange={(event) => this.changeValue("en", "title", event)} value={this.state.project.en.title} type="text" required="required" /><span className="highlight"></span><span
                                         className="bar"></span>
                                     <label>Название проекта</label>
                                 </div>
@@ -203,17 +225,16 @@ class changeProject extends Component {
                                         className="highlight"></span><span className="bar"></span>
                                     <label>Результаты</label>
                                 </div>
-                                <div className="group">
-                                    <textarea onChange={(event) => this.changeValue("en", "tags", event)} value={this.state.project.en.tags} type="textarea" rows="3" required="required"></textarea><span
-                                    className="highlight"></span><span className="bar"></span>
-                                    <label>Теги(Через запятую)</label>
-                                </div>
+                                <ReactTags tags={this.state.project.en.tags}
+                                           handleDelete={(i) => this.handleDelete(i,"en")}
+                                           handleAddition={(tag) =>this.handleAddition(tag,"en")}
+                                           delimiters={delimiters} />
                             </div>
 
                             <div className="col-6 mb-4">
                                 <h5>Информация на немецком языке</h5>
                                 <div className="group">
-                                    <input onChange={(event) => this.changeValue("gr", "title", event)} value={this.state.project.gr.title} type="text" required="required" /><span className="highlight"></span><span
+                                    <input className="input-style" onChange={(event) => this.changeValue("gr", "title", event)} value={this.state.project.gr.title} type="text" required="required" /><span className="highlight"></span><span
                                         className="bar"></span>
                                     <label>Название проекта</label>
                                 </div>
@@ -237,17 +258,16 @@ class changeProject extends Component {
                                         className="highlight"></span><span className="bar"></span>
                                     <label>Результаты</label>
                                 </div>
-                                <div className="group">
-                                    <textarea onChange={(event) => this.changeValue("gr", "tags", event)} value={this.state.project.gr.tags} type="textarea" rows="3" required="required"></textarea><span
-                                    className="highlight"></span><span className="bar"></span>
-                                    <label>Теги(Через запятую)</label>
-                                </div>
+                                <ReactTags tags={this.state.project.gr.tags}
+                                           handleDelete={(i) => this.handleDelete(i,"gr")}
+                                           handleAddition={(tag) =>this.handleAddition(tag,"gr")}
+                                           delimiters={delimiters} />
                             </div>
 
                             <div className="col-6 mb-4">
                                 <h5>Изображения для загрузки <br /> (Можно загрузить несколько изображений)</h5>
                                 <div>
-                                    <input ref={instance => {
+                                    <input className="input-style" ref={instance => {
                                         this.fileUpload = instance
                                     }} type="file" multiple={true} accept={"image/*"} required />
                                     <div className="container">

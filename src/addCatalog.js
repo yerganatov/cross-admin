@@ -88,7 +88,6 @@ class addCatalog extends Component {
 
     changeValue = async (language, key, event) => {
         const value = event.target.value;
-        console.log(value)
         await this.setState(state => {
             state["project"][language][key] = value;
             return state;
@@ -109,7 +108,7 @@ class addCatalog extends Component {
                             <div className="col-6 mb-4">
                                 <h5>Информация на русском языке</h5>
                                 <div className="group">
-                                    <input onChange={(event) => this.changeValue("ru", "title", event)} value={this.state.project.ru.title} type="text" required="required"/><span className="highlight"></span><span
+                                    <input className="input-style" onChange={(event) => this.changeValue("ru", "title", event)} value={this.state.project.ru.title} type="text" required="required"/><span className="highlight"></span><span
                                     className="bar"></span>
                                     <label>Название проекта</label>
                                 </div>
@@ -129,7 +128,7 @@ class addCatalog extends Component {
                             <div className="col-6 mb-4">
                                 <h5>Информация на английском языке</h5>
                                 <div className="group">
-                                    <input onChange={(event) => this.changeValue("en", "title", event)} value={this.state.project.en.title} type="text" required="required"/><span className="highlight"></span><span
+                                    <input className="input-style" onChange={(event) => this.changeValue("en", "title", event)} value={this.state.project.en.title} type="text" required="required"/><span className="highlight"></span><span
                                     className="bar"></span>
                                     <label>Название проекта</label>
                                 </div>
@@ -152,7 +151,7 @@ class addCatalog extends Component {
                             <div className="col-6 mb-4">
                                 <h5>Информация на немецком языке</h5>
                                 <div className="group">
-                                    <input onChange={(event) => this.changeValue("gr", "title", event)} value={this.state.project.gr.title} type="text" required="required"/><span className="highlight"></span><span
+                                    <input className="input-style" onChange={(event) => this.changeValue("gr", "title", event)} value={this.state.project.gr.title} type="text" required="required"/><span className="highlight"></span><span
                                     className="bar"></span>
                                     <label>Название проекта</label>
                                 </div>
@@ -171,7 +170,7 @@ class addCatalog extends Component {
                             <div className="col-6 mb-4">
                                 <h5>Изображения для загрузки <br/> (Можно загрузить несколько изображений)</h5>
                                 <div>
-                                    <input ref={instance => {
+                                    <input className="input-style" ref={instance => {
                                         this.fileUpload = instance
                                     }} type="file" multiple={false} accept={"image/*"} required/>
                                     <div>
@@ -181,9 +180,8 @@ class addCatalog extends Component {
                                     </div>
                                 </div>
                                 <h5 className="mt-5">Дата</h5>
-                                <input type="date" onChange={(event) => {
+                                <input className="input-style" type="date" onChange={(event) => {
                                     this.setState({startDate: event.target.value})
-                                    console.log(this.state.startDate)
                                 }} />
                             </div>
                         </div>
