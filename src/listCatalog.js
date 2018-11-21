@@ -63,7 +63,7 @@ class listCatalog extends Component {
                 },
                 {
                     label: 'Нет',
-                    onClick: () => this.fetchProject()
+                    onClick: () => this.fetchProjects()
                 }
             ],
             childrenElement: () => <div />,
