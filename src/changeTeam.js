@@ -82,6 +82,7 @@ class changeTeam extends Component {
 
                 });
             })
+
             const options = {
                 title: 'Готово!',
                 message: 'Хотите вернутся на главную?',
