@@ -26,7 +26,8 @@ class addService extends Component {
         downloadURLs: [],
         isUploading: false,
         uploadProgress: 0,
-        images: []
+        images: [],
+        uploadingButton: false
     };
     guid = () => {
         function s4() {
@@ -40,6 +41,9 @@ class addService extends Component {
 
 
     uploadProject = async () => {
+        this.setState({
+            uploadingButton:true
+        })
         db.collection("services").add(this.state.project)
             .then( (docRef) => {
                 const options = {
@@ -131,7 +135,7 @@ class addService extends Component {
                         </div>
 
                         <div className="btn-box">
-                            <button onClick={() => this.uploadProject()} className="btn btn-submit" type="submit">Добавить</button>
+                            <button disabled={this.state.uploadingButton?true:false} onClick={() => this.uploadProject()} className="btn btn-submit" type="submit">Добавить</button>
                         </div>
                     </div>
                 </div>

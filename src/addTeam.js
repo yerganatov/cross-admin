@@ -32,12 +32,16 @@ class addTeam extends Component {
         downloadURLs: [],
         isUploading: false,
         uploadProgress: 0,
-        startDate:new Date()
+        startDate:new Date(),
+        uploadingButton: false
     };
 
 
 
     uploadCatalog = async () => {
+        this.setState({
+            uploadingButton:true
+        })
         const files = this.fileUpload.files;
         const person = this.state.person;
 
@@ -199,7 +203,7 @@ class addTeam extends Component {
                         </div>
 
                         <div className="btn-box">
-                            <button onClick={() => this.uploadCatalog()} className="btn btn-submit" type="submit">Добавить</button>
+                            <button disabled={this.state.uploadingButton?true:false} onClick={() => this.uploadCatalog()} className="btn btn-submit" type="submit">Добавить</button>
                         </div>
                     </div>
                 </div>

@@ -28,7 +28,8 @@ class addCatalog extends Component {
         downloadURLs: [],
         isUploading: false,
         uploadProgress: 0,
-        startDate:new Date()
+        startDate:new Date(),
+        uploadingButton: false
     };
     guid = () => {
         function s4() {
@@ -42,6 +43,9 @@ class addCatalog extends Component {
 
 
     uploadCatalog = async () => {
+        this.setState({
+            uploadingButton:true
+        })
         const files = this.fileUpload.files;
         const project = this.state.project;
         project["date"] = this.state.startDate;
@@ -187,7 +191,7 @@ class addCatalog extends Component {
                         </div>
 
                         <div className="btn-box">
-                            <button onClick={() => this.uploadCatalog()} className="btn btn-submit" type="submit">Добавить</button>
+                            <button disabled={this.state.uploadingButton?true:false} onClick={() => this.uploadCatalog()} className="btn btn-submit" type="submit">Добавить</button>
                         </div>
                     </div>
                 </div>

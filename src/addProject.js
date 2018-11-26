@@ -56,7 +56,8 @@ class addProject extends Component {
         downloadURLs: [],
         isUploading: false,
         uploadProgress: 0,
-        images: []
+        images: [],
+        uploadingButton: false
     };
     guid = () => {
         function s4() {
@@ -84,6 +85,9 @@ class addProject extends Component {
 
 
     uploadProject = async () => {
+        this.setState({
+            uploadingButton:true
+        })
         const files = this.fileUpload.files;
         const project = this.state.project;
         const images = this.state.images;
@@ -268,7 +272,7 @@ class addProject extends Component {
                         </div>
 
                         <div className="btn-box">
-                            <button onClick={() => this.uploadProject()} className="btn btn-submit" type="submit">Добавить</button>
+                            <button disabled={this.state.uploadingButton?true:false} onClick={() => this.uploadProject()} className="btn btn-submit" type="submit">Добавить</button>
                         </div>
                     </div>
                 </div>
