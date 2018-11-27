@@ -12,6 +12,7 @@ import addService from "./addService";
 import addPartners from "./addPartners";
 import changeProject from "./changeProjects";
 import changePartners from "./changeParners";
+import changeContacts from "./changeContacts";
 
 import changeCatalog from './changeCatalog';
 import listTeam from "./listTeam";
@@ -65,6 +66,7 @@ class App extends Component {
                     
                     <PrivateRoute path="/addService" component={addService} />
                     <PrivateRoute path="/addPartners" component={addPartners} />
+                    <PrivateRoute path="/changeContacts" component={changeContacts} />
                     <PrivateRoute path="/changeproject/:id" component={changeProject} />
                     <PrivateRoute path="/changecatalog/:id" component={changeCatalog} />
                     <PrivateRoute path="/changeteam/:id" component={changeTeam} />

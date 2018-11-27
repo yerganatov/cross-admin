@@ -25,6 +25,7 @@ class Sidebar extends  Component {
                 <a className={isActive=== "team" && "active"} href="/listTeam">Команда</a>
                 <a className={isActive=== "service" && "active"} href="/listService">Услуги</a>
                 <a className={isActive=== "partners" && "active"} href="/listPartners">Партнеры</a>
+                <a className={isActive=== "contacts" && "active"} href="/changeContacts">Контакты</a>
                 <a onClick={this.signOut} href="">Выйти</a>
             </div>
         )
