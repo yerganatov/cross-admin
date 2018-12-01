@@ -40,13 +40,11 @@ class addService extends Component {
 
     fetchTeam = async ()  =>{
         try {
-            const snapshot = await db.collection('services').doc(this.props.match.params.id).get();
+            const snapshot = await db.collection('contacts').doc("fHjNkcn2zz7XE7EyImdh").get();
             let project = snapshot.data();
-            let images = this.state.images;
-            images.push(project.image);
+            console.log(project);
             this.setState({
                 project: project,
-                images: images
             })
         }
         catch (error) {
@@ -57,8 +55,7 @@ class addService extends Component {
 
     uploadProject = async () => {
         const project = this.state.project;
-        const id = this.props.match.params.id;
-        db.collection("services").doc(this.props.match.params.id).set(project).then(async (docRef) => {
+        db.collection("contacts").doc("fHjNkcn2zz7XE7EyImdh").set(project).then(async (docRef) => {
             const options = {
                 title: 'Готово!',
                 message: 'Хотите вернутся на главную?',
