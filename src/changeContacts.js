@@ -15,17 +15,23 @@ class addService extends Component {
             ru: {
                 phone:"",
                 email:"",
-                address:""
+                address:"",
+                instagram:"",
+                facebook:""
             },
             en: {
                 phone:"",
                 email:"",
-                address:""
+                address:"",
+                instagram:"",
+                facebook:""
             },
             gr: {
                 phone:"",
                 email:"",
-                address:""
+                address:"",
+                instagram:"",
+                facebook:""
             }
         },
         filenames: [],
@@ -114,6 +120,16 @@ class addService extends Component {
                                     className="bar"></span>
                                     <label>Адрес</label>
                                 </div>
+                                <div className="group">
+                                    <input className="input-style" onChange={(event) => this.changeValue("ru", "instagram", event)} value={this.state.project.ru.instagram} type="text" required="required"/><span className="highlight"></span><span
+                                    className="bar"></span>
+                                    <label>Instagram</label>
+                                </div>
+                                <div className="group">
+                                    <input className="input-style" onChange={(event) => this.changeValue("ru", "facebook", event)} value={this.state.project.ru.facebook} type="text" required="required"/><span className="highlight"></span><span
+                                    className="bar"></span>
+                                    <label>Facebook</label>
+                                </div>
 
                             </div>
 
@@ -135,6 +151,16 @@ class addService extends Component {
                                     className="bar"></span>
                                     <label>Адрес</label>
                                 </div>
+                                <div className="group">
+                                    <input className="input-style" onChange={(event) => this.changeValue("en", "instagram", event)} value={this.state.project.en.instagram} type="text" required="required"/><span className="highlight"></span><span
+                                    className="bar"></span>
+                                    <label>Instagram</label>
+                                </div>
+                                <div className="group">
+                                    <input className="input-style" onChange={(event) => this.changeValue("en", "facebook", event)} value={this.state.project.en.facebook} type="text" required="required"/><span className="highlight"></span><span
+                                    className="bar"></span>
+                                    <label>Facebook</label>
+                                </div>
 
                             </div>
 
@@ -155,6 +181,17 @@ class addService extends Component {
                                     className="bar"></span>
                                     <label>Адрес</label>
                                 </div>
+                                <div className="group">
+                                    <input className="input-style" onChange={(event) => this.changeValue("gr", "instagram", event)} value={this.state.project.gr.instagram} type="text" required="required"/><span className="highlight"></span><span
+                                    className="bar"></span>
+                                    <label>Instagram</label>
+                                </div>
+                                <div className="group">
+                                    <input className="input-style" onChange={(event) => this.changeValue("gr", "facebook", event)} value={this.state.project.gr.facebook} type="text" required="required"/><span className="highlight"></span><span
+                                    className="bar"></span>
+                                    <label>Facebook</label>
+                                </div>
+
 
                             </div>
 
