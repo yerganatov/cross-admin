@@ -356,21 +356,6 @@ class changeProject extends Component {
                                     <input className="input-style" ref={instance => {
                                         this.fileUpload = instance
                                     }} type="file" multiple={true} accept={"image/*"} required />
-                                    <div className="container">
-                                        <div className="row">
-                                            {this.state.images.map((item, i) => {
-                                                return (
-                                                    <div key={i} className="col-6 disp-wrap">
-                                                        <button onClick={() => this.removeImage(i)}>
-                                                            ✕
-                                                        </button>
-                                                        <img className="disp-img" key={i} src={item} />
-                                                    </div>
-                                                );
-                                            })}
-                                        </div>
-                                    </div>
-
                                 </div>
                             </div>
                         </div>
