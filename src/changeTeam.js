@@ -60,11 +60,97 @@ class changeTeam extends Component {
 
 
 
+    checkforlist = (object) =>{
+        let ff = 0;
+        for(var key in object){
+            if(object[key] == ""){                            
+                ff = ff+0;
+            }
+            else if(object[key].length > 2){
+                ff = ff +1;
+            }
+            
+        }
+        return ff ;
+    } 
+
+
+
     uploadCatalog = async () => {
         const files = this.fileUpload.files;
         const project = this.state.person;
         const images = this.state.images[0];
         const id = this.props.match.params.id;
+
+        const ruR = {
+            name: person.ru.name,
+            workType: person.ru.workType,
+            phone: person.ru.phone,
+            email: person.ru.email
+        }
+        const enR = {
+            name: person.en.name,
+            workType: person.en.workType,
+            phone: person.en.phone,
+            email: person.en.email
+        }
+        const grR = {
+            name: person.gr.name,
+            workType: person.gr.workType,
+            phone: person.gr.phone,
+            email: person.gr.email
+        }
+        let returnru = false;
+        let returnen = false;
+        let returngr = false;
+        if (checkData(ruR) && checkData(enR) && checkData(grR)) {
+            alert("Вы не заполнили ни одно поле");
+            this.setState({
+                uploadingButton: false
+            })
+            return false;
+        }
+        console.log(this.checkforlist(ruR))
+
+        if (this.checkforlist(ruR) < 4 && this.checkforlist(ruR) != 0) {
+            this.setState({
+                uploadingButton: false
+            })
+            alert("Заполните все ru  поля")
+
+            return false;
+        }
+        console.log(this.checkforlist(enR))
+
+        if (this.checkforlist(enR) < 4 && this.checkforlist(enR) != 0) {
+            this.setState({
+                uploadingButton: false
+            })
+            alert("Заполните все en  поля")
+
+            return false;
+        }
+        console.log(this.checkforlist(grR))
+
+        if (this.checkforlist(grR) < 4 && this.checkforlist(grR) != 0) {
+            this.setState({
+                uploadingButton: false
+            })
+            alert("Заполните все gr  поля")
+
+            return false;
+        }
+        if (this.fileUpload.files.length < 1) {
+            alert("Загрузите картинку")
+            this.setState({
+                uploadingButton: false
+            })
+            return false;
+
+        }
+
+
+
         db.collection("team").doc(this.props.match.params.id).set(project).then(async (docRef) => {
             const storage = store;
             const storageRef = storage.ref();
