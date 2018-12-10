@@ -4,6 +4,7 @@ import './App.css';
 import Sidebar from "./sidebar";
 import {db, store} from "./firebase";
 import {confirmAlert} from "react-confirm-alert";
+import {checkData,consistsOfLetters} from "./utils"
 
 class addCatalog extends Component {
     state = {
@@ -41,6 +42,21 @@ class addCatalog extends Component {
         return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
     }
 
+    checkforlist = (object) =>{
+        let ff = 0;
+        for(var key in object){
+            if(object[key] == ""){                            
+                ff = ff+0;
+            }
+            else if(object[key].length > 2){
+                ff = ff +1;
+            }
+            
+        }
+        return ff ;
+    } 
+
+
 
     uploadCatalog = async () => {
         this.setState({
@@ -49,6 +65,67 @@ class addCatalog extends Component {
         const files = this.fileUpload.files;
         const project = this.state.project;
         project["date"] = this.state.startDate;
+        const ruR = {
+            title: project.ru.title,
+            aboutCatalog: project.ru.aboutCatalog,
+            requestPartners: project.ru.requestPartners
+        }
+        const enR = {
+            title: project.en.title,
+            aboutCatalog: project.en.aboutCatalog,
+            requestPartners: project.en.requestPartners
+        }
+        const grR = {
+            title: project.gr.title,
+            aboutCatalog: project.gr.aboutCatalog,
+            requestPartners: project.gr.requestPartners
+        }
+        if(checkData(ruR) && checkData(enR) && checkData(grR)){
+            alert("Вы не заполнили ни одно поле");
+            this.setState({
+                uploadingButton:false
+            })
+            return false;
+        }
+        console.log(this.checkforlist(ruR))
+        
+        if(this.checkforlist(ruR) < 3 && this.checkforlist(ruR)  != 0){
+            this.setState({
+                uploadingButton:false
+            })
+            alert("Заполните все ru  поля")
+            
+            return false;
+        }
+        console.log(this.checkforlist(enR))
+        
+        if(this.checkforlist(enR) < 3 && this.checkforlist(enR) != 0){
+            this.setState({
+                uploadingButton:false
+            })
+            alert("Заполните все en  поля")
+            
+            return false;
+        }
+        console.log(this.checkforlist(grR))
+        
+        if(this.checkforlist(grR) < 3 && this.checkforlist(grR) != 0){
+            this.setState({
+                uploadingButton:false
+            })
+            alert("Заполните все gr  поля")
+            
+            return false;
+        }
+        if(this.fileUpload.files.length < 1){
+            alert("Загрузите картинку")
+            this.setState({
+                uploadingButton:false
+            })
+            return false;
+            
+        }
+     
         db.collection("catalog").add(this.state.project)
             .then( async (docRef) => {
                 const storage = store;
@@ -96,7 +173,6 @@ class addCatalog extends Component {
             state["project"][language][key] = value;
             return state;
         })
-        console.log(this.state);
     };
 
 

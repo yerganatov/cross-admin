@@ -99,6 +99,11 @@ textarea {
   resize: none;
 }
 
+.error{
+  border-bottom: 1px solid #7f0000;
+  
+}
+
 .input-style,
 .input-style:-webkit-autofill,
 .input-style:-webkit-autofill:hover,
@@ -114,6 +119,7 @@ InputMask {
   border-radius: 0;
   border-bottom: 1px solid #c6c6c6;
 }
+
 .input-style:-webkit-autofill,
 .input-style:-webkit-autofill:hover,
 .input-style:focus,

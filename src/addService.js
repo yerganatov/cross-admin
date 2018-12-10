@@ -5,6 +5,8 @@ import Sidebar from "./sidebar";
 
 import {db, store} from "./firebase";
 import {confirmAlert} from "react-confirm-alert";
+import {checkData,consistsOfLetters} from "./utils"
+
 
 class addService extends Component {
     state = {
@@ -39,11 +41,75 @@ class addService extends Component {
         return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
     }
 
+    checkforlist = (object) =>{
+        let ff = 0;
+        for(var key in object){
+            if(object[key] == ""){                            
+                ff = ff+0;
+            }
+            else if(object[key].length > 2){
+                ff = ff +1;
+            }
+            
+        }
+        return ff ;
+    } 
+
+
 
     uploadProject = async () => {
+        const project = this.state.project
         this.setState({
             uploadingButton:true
         })
+        const ruR = {
+            title: project.ru.title,
+            description:project.ru.description
+        }
+        const enR = {
+            title: project.en.title,
+            description:project.en.description
+            
+        }
+        const grR = {
+            title: project.gr.title,
+            description:project.gr.description
+            
+        }
+        if(checkData(ruR) && checkData(enR) && checkData(grR)){
+            alert("Вы не заполнили ни одно поле");
+            this.setState({
+                uploadingButton:false
+            })
+            return false;
+        }
+        
+        if(this.checkforlist(ruR) <2 && this.checkforlist(ruR)  != 0){
+            this.setState({
+                uploadingButton:false
+            })
+            alert("Заполните все ru  поля")
+            
+            return false;
+        }
+        
+        if(this.checkforlist(enR) <2 && this.checkforlist(enR) != 0){
+            this.setState({
+                uploadingButton:false
+            })
+            alert("Заполните все en  поля")
+            
+            return false;
+        }
+        
+        if(this.checkforlist(grR) <2 && this.checkforlist(grR) != 0){
+            this.setState({
+                uploadingButton:false
+            })
+            alert("Заполните все gr  поля")
+            
+            return false;
+        }
         db.collection("services").add(this.state.project)
             .then( (docRef) => {
                 const options = {
