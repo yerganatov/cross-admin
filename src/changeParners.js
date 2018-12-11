@@ -4,6 +4,7 @@ import './App.css';
 import Sidebar from "./sidebar";
 import {db, store} from "./firebase";
 import { confirmAlert } from 'react-confirm-alert'; // Import
+import {checkData,consistsOfLetters} from "./utils"
 
 class addPartners extends Component {
     state = {

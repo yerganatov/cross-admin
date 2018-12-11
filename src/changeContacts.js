@@ -7,7 +7,7 @@ import { db, store } from "./firebase";
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'
 
-
+import {checkData,consistsOfLetters} from "./utils"
 
 class addService extends Component {
     state = {

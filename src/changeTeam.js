@@ -6,7 +6,7 @@ import Sidebar from "./sidebar";
 import {db, store} from "./firebase";
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'
-
+import {checkData,consistsOfLetters} from "./utils"
 
 class changeTeam extends Component {
     state = {
@@ -78,7 +78,7 @@ class changeTeam extends Component {
 
     uploadCatalog = async () => {
         const files = this.fileUpload.files;
-        const project = this.state.person;
+        const person = this.state.person;
         const images = this.state.images[0];
         const id = this.props.match.params.id;
 
@@ -151,7 +151,7 @@ class changeTeam extends Component {
 
 
 
-        db.collection("team").doc(this.props.match.params.id).set(project).then(async (docRef) => {
+        db.collection("team").doc(this.props.match.params.id).set(person).then(async (docRef) => {
             const storage = store;
             const storageRef = storage.ref();
             const newDirectory = id;
@@ -162,8 +162,8 @@ class changeTeam extends Component {
                         .ref(`images/${newDirectory}/`)
                         .child(item.name)
                         .getDownloadURL().then(url => {
-                            project["image"] = url;
-                            db.collection("team").doc(newDirectory).set(project);
+                            person["image"] = url;
+                            db.collection("team").doc(newDirectory).set(person);
                         });
 
                 });
