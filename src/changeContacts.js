@@ -133,14 +133,7 @@ class addService extends Component {
 
             return false;
         }
-        if (this.fileUpload.files.length < 1) {
-            alert("Загрузите картинку")
-            this.setState({
-                uploadingButton: false
-            })
-            return false;
-
-        }
+        
         db.collection("contacts").doc("fHjNkcn2zz7XE7EyImdh").set(project).then(async (docRef) => {
             const options = {
                 title: 'Готово!',
