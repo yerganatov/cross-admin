@@ -266,11 +266,14 @@ class changeCatalog extends Component {
                                     <input className="input-style" ref={instance => {
                                         this.fileUpload = instance
                                     }} type="file" multiple={false} accept={"image/*"} required/>
-                                    <div className="disp-wrap">
-                                        
+                                    {
+                                        this.state.image !== "" ?  <div className="disp-wrap">
+
                                         <button onClick={() => this.removeImage()}>✕</button>
                                         <img className="disp-img"  src={this.state.image}/>
-                                    </div>
+                                        </div>: null
+                                    }
+
                                 </div>
                                 <h5 className="mt-5">Дата</h5>
                                 <input className="input-style" type="date" onChange={(event) => {

@@ -62,10 +62,15 @@ class changeProject extends Component {
         try {
             const snapshot = await db.collection('projects').doc(this.props.match.params.id).get();
             let project = snapshot.data();
+            console.log(project);
             this.setState({
                 project: project,
                 images: project.images
             })
+            if(project.images === undefined) {
+                console.log("imsada")
+                this.setState({images:[]})
+            }
         }
         catch (error) {
             alert(error.message);
@@ -75,8 +80,11 @@ class changeProject extends Component {
         const files = this.fileUpload.files;
         const project = this.state.project;
         const images = this.state.images;
+        console.log(images);
+        console.log(this.state.images);
         project.images = this.state.images;
         const id = this.props.match.params.id;
+        console.log(project);
         db.collection("projects").doc(this.props.match.params.id).set(project).then(async (docRef) => {
             const storage = store;
             const storageRef = storage.ref();
@@ -271,7 +279,19 @@ class changeProject extends Component {
                                         this.fileUpload = instance
                                     }} type="file" multiple={true} accept={"image/*"} required />
                                     <div className="container">
+                                        {
+                                            this.state.images.map((item,index) =>{
+                                                console.log(item)
+                                                return(
+                                                    <div className="disp-wrap">
 
+                                                        <button onClick={() => this.removeImage(index)}>✕</button>
+                                                        <img className="disp-img"  src={item}/>
+                                                    </div>
+
+                                                )
+                                            })
+                                        }
                                     </div>
 
                                 </div>
